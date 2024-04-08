@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02"
+        tools:ignore="MissingConstraints">
+
+        <ImageButton
+            android:id="@+id/perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#00000000"
+            android:padding="8dp"
+            app:tint="#000000"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:src="@android:drawable/ic_delete" />
+
+        <ImageButton
+            android:id="@+id/cerrar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#00000000"
+            android:padding="8dp"
+            app:tint="#000000"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:src="@android:drawable/ic_menu_myplaces" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/button"
+        android:layout_width="38dp"
+        android:layout_height="42dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:src="@android:drawable/ic_menu_more" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="377dp"
+        android:layout_height="44dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mascotas" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ubicacion" />
+
+        <Button
+            android:id="@+id/btActulizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="actualizar" />
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="415dp"
+        android:layout_height="584dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

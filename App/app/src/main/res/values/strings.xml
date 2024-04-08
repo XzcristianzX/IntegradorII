@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">IntegradorII</string>
+
+    --- Apart-ado de Login ---
+
+    <string name="userLg">Usuario</string>
+    <string name="paswordLg">Contraseña</string>
+    <string name="registerLg">Registrace</string>
+    <string name="mjRegisterLg">Aun no tiene Cuenta</string>
+    <string name="login">Iniciar Seccion</string>
+
+    --- Apart-ado de Register ---
+
+    <string name="userRg">Ingrece el usuario</string>
+    <string name="nameRg">Ingrese el nombre</string>
+    <string name="dateRg">Ingrese la fecha de nacimiento</string>
+    <string name="mailRg">Ingrese el correo</string>
+    <string name="paswordRg">Ingrece la Contraseña</string>
+    <string name="paswordValidarRg">Valida la Contraseña</string>
+    <string name="phoneRg">Ingrece el numero de telefono</string>
+    <string name="registerRg">Registro</string>
+
+</resources>

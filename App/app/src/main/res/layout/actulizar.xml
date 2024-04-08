@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de usuario" />
+
+
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextUserName"
+        android:hint="Contraseña"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPassword"
+        android:hint="Teléfono"
+        android:inputType="phone" />
+
+
+    <Button
+        android:id="@+id/buttonChooseImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPhone"
+        android:text="Seleccionar imagen"
+        android:onClick="selectImage" />
+
+    <Button
+        android:id="@+id/buttonUpdateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonChooseImage"
+        android:text="Actualizar usuario" />
+
+</RelativeLayout>
