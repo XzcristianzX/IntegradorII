@@ -1,3 +1,8 @@
+/**
+import Server from "./config/server.js";
+const runServer = new Server();
+runServer.load()
+**/
 
 const express = require('express');
 const multer = require('multer');
