@@ -56,7 +56,7 @@
                 android:layout_gravity="center"
                 android:hint="@string/paswordLg"
                 android:textAlignment="center"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="textPassword" />
 
             <Button
                 android:id="@+id/btLogin"

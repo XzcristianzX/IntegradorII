@@ -1,9 +1,6 @@
 package com.example.integradorii.vista;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -18,21 +15,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.integradorii.Api.ApiService;
 import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.estructura.User;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Register extends AppCompatActivity {
 
@@ -135,7 +120,7 @@ public class Register extends AppCompatActivity {
 
 
 
-                model.registerUser(userRegister, nombre,fecha,correo,pin,null,tel,genero, new Model.LoginCallback() {
+                model.registerUser(userRegister, nombre,fecha,correo,pin,null,tel,genero, new Model.UserCallback() {
                     @Override
                     public void onSuccess(User user) {
                         // Usuario autenticado correctamente
@@ -158,7 +143,7 @@ public class Register extends AppCompatActivity {
 
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Error al guardar los datos del artículo",
+            Toast.makeText(this, "Error al guardar los datos del usuario",
                     Toast.LENGTH_SHORT).show();
             Log.e("Error",e.getMessage());
         }

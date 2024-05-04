@@ -46,6 +46,10 @@
             android:name=".vista.Actulizar"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".vista.Verificar"
+            android:exported="true">
+        </activity>
         
     </application>
 

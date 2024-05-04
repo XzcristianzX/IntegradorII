@@ -1,46 +1,38 @@
 package com.example.integradorii.estructura;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.Date;
 
 public class User {
-    @SerializedName("id_user")
     private int idUser;
-
-
-    @SerializedName("user_name")
-    private String userName;
-
-    @SerializedName("name")
+    private String username;
     private String name;
-
-    @SerializedName("birthdate")
     private String birthdate;
-
-    @SerializedName("mail")
-    private String mail;
-
-    @SerializedName("password")
+    private String email;
     private String password;
-
-    @SerializedName("img_profile")
-    private String img;
-
-    @SerializedName("phone")
+    private String imgProfile;
     private String phone;
-
-    @SerializedName("gender")
     private String gender;
+    private boolean active;
+    private String code;
 
-    public User(int idUser, String userName, String name, String birthdate, String mail, String password, String img, String phone, String gender) {
+    public User(int idUser, String username, String name, String birthdate, String email, String password, String imgProfile, String phone, String gender, boolean active,String code) {
         this.idUser = idUser;
-        this.userName = userName;
+        this.username = username;
         this.name = name;
         this.birthdate = birthdate;
-        this.mail = mail;
+        this.email = email;
         this.password = password;
-        this.img = img;
+        this.imgProfile = imgProfile;
         this.phone = phone;
         this.gender = gender;
+        this.active = active;
+        this.code = code;
+    }
+
+    public User(String email, String code, String password) {
+        this.email = email;
+        this.code = code;
+        this.password = password;
     }
 
     public int getIdUser() {
@@ -51,12 +43,12 @@ public class User {
         this.idUser = idUser;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {
@@ -75,12 +67,12 @@ public class User {
         this.birthdate = birthdate;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -91,12 +83,12 @@ public class User {
         this.password = password;
     }
 
-    public String getImg() {
-        return img;
+    public String getImgProfile() {
+        return imgProfile;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImgProfile(String imgProfile) {
+        this.imgProfile = imgProfile;
     }
 
     public String getPhone() {
@@ -114,4 +106,13 @@ public class User {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }
+

@@ -1,5 +1,6 @@
 package com.example.integradorii.vista;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ public class Home  extends AppCompatActivity {
     private Button btactulizar;
     String userName,id,name;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

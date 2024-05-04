@@ -50,10 +50,10 @@ public class Actulizar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Obtener los valores ingresados por el usuario
-
                 String nombre = editTextUserName.getText().toString().trim();
                 String password = editTextPassword.getText().toString().trim();
                 String phone = editTextPhone.getText().toString().trim();
+                int id=1;
 
                 // Aquí puedes enviar los datos del usuario, incluida la imagen, para su actualización
                 if (selectedImageUri != null) {
@@ -68,7 +68,7 @@ public class Actulizar extends AppCompatActivity {
                 Toast.makeText(Actulizar.this, "Datos actualizados correctamente", Toast.LENGTH_SHORT).show();
 
 
-                model.actulizarUser(nombre, password,"img",phone,userName, new Model.LoginCallback() {
+                model.actulizarUser(id,nombre, password,"img",phone,userName, new Model.UserCallback() {
                     @Override
                     public void onSuccess(User user) {
                         // Usuario autenticado correctamente

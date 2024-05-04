@@ -13,41 +13,43 @@ import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.estructura.User;
 
-import io.socket.client.Socket;
+public class Verificar extends AppCompatActivity {
+    Button btaceptar,btcancelar;
 
-public class Login extends AppCompatActivity {
-    Button btRegistrarce,btLogin;
-    EditText editemial,editpassword;
-    private Socket socket;
+    EditText editCode;
+
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.login);
-        btRegistrarce = findViewById(R.id.btRegister);
-        btLogin = findViewById(R.id.btLogin);
-        editemial = findViewById(R.id.userLogin);
-        editpassword = findViewById(R.id.paswordLogin);
-
+        setContentView(R.layout.verificar);
+        btaceptar = findViewById(R.id.btaceptar);
+        btcancelar = findViewById(R.id.btcancelar);
+        editCode = findViewById(R.id.code);
         final Model model = new Model();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            if (extras.containsKey("mail")) {
+                email = extras.getString("mail");
+            }
+        }
 
-        btLogin.setOnClickListener(new View.OnClickListener() {
+        btaceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = editemial.getText().toString().trim();
-                String password = editpassword.getText().toString().trim();
-
-                model.loginUser(email, password, new Model.UserCallback() {
+                String code = editCode.getText().toString().trim();
+                model.verificarUser(email,code, new Model.UserCallback() {
                     @Override
                     public void onSuccess(User user) {
-
-                        Toast.makeText(Login.this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(Login.this, Verificar.class);
+                        // Usuario autenticado correctamente
+                        Toast.makeText(Verificar.this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Verificar.this, Home.class);
                         intent.putExtra("name",user.getName());
                         intent.putExtra("phone",user.getPhone());
                         intent.putExtra("user_name",user.getUsername());
-                        intent.putExtra("mail",email);
+                        intent.putExtra("mail",user.getEmail());
+
                         //aqui pasar los demas datos
                         startActivity(intent);
                         finish();
@@ -56,16 +58,16 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onFailure() {
                         // Error de autenticación
-                        Toast.makeText(Login.this, "Error: Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Verificar.this, "Error: Credenciales incorrectas", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
 
-        btRegistrarce.setOnClickListener(new View.OnClickListener() {
+        btcancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, Register.class);
+                Intent intent = new Intent(Verificar.this, Login.class);
                 startActivity(intent);
                 finish();
             }
