@@ -5,5 +5,19 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.IntegradorII" parent="Base.Theme.IntegradorII" />
+    <style name="Theme.IntegradorII" parent="Base.Theme.IntegradorII">
+        <item name="android:statusBarColor">@color/backgorund</item>
+    </style>
+
+    <style name="AppTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxStrokeColor">@color/hintColor</item>
+        <item name="boxBackgroundColor">@color/backgorundTwo</item>
+        <item name="android:textColorHint">@color/hintColor</item>
+        <item name="hintTextColor">@color/hintColor</item>
+    </style>
+
+    <style name="SpinnerTextStyle">
+        <item name="android:textColor">@color/hintColor</item>
+    </style>
+
 </resources>

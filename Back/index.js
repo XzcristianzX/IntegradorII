@@ -21,7 +21,7 @@ const io = socketIo(server);
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
-    database: 'animal',
+    database: 'integrador',
     password: 'admin',
     port: 5432,
 });
@@ -43,7 +43,7 @@ async function sendSecurityCode(email, code) {
    // Guardar el código en la base de datos
 
     const body = 'UPDATE "user" SET codigo_login = $1 WHERE mail = $2';
-    await pool.body(body, [code, email]);
+    await pool.query(body, [code, email]);
 
     // Configurar el objeto de opciones del correo electrónico dentro de la función
     const mailOptions = {
@@ -80,7 +80,7 @@ app.post('/login', async (req, res) => {
     try {
         // Consulta SQL para verificar si el correo electrónico y la contraseña coinciden en la base de datos
         const body = 'SELECT * FROM "user" WHERE mail = $1 AND password = $2';
-        const { rows } = await pool.body(body, [email, password]);
+        const { rows } = await pool.query(body, [email, password]);
 
         if (rows.length === 0) {
             // Si no se encuentra ningún usuario con el correo electrónico y contraseña proporcionados
@@ -142,11 +142,11 @@ app.post('/img', upload.single('file'), (req, res) => {
 // TODOS LOS USER
 app.get('/user', async (req, res) => {
     try {
-        const { rows } = await pool.body('SELECT * FROM "user"');
+        const { rows } = await pool.query('SELECT * FROM "user"');
         res.json(rows);
     } catch (error) {
         console.error('Error al obtener usuarios:', error);
-        res.status(500).json({ error: 'Error interno del servidor' });
+        res.status(500).json({ error: 'Error interno del servidor'});
     }
 });
 //REGISTER
@@ -154,9 +154,9 @@ app.post('/user', async (req, res) => {
     const { username, name, birthdate, email, password, img_profile, phone, gender, active } = req.body;
     console.log (username)
     try {
-        const { rows } = await pool.body(
-            'INSERT INTO "user" (user_name, name, birthdate, mail, password, img_profile, phone, gender) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
-            [username, name, birthdate, email, password, img_profile, phone, gender]
+        const { rows } = await pool.query(
+            'INSERT INTO "user" (user_name, name, birthdate, mail, password, img_profile, phone, gender, active) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+            [username, name, birthdate, email, password, img_profile, phone, gender, active]
         );
         const newUser = rows[0];
         io.emit('newUser', newUser); // Emitir un evento a todos los clientes conectados sobre el nuevo usuario
@@ -242,10 +242,10 @@ app.put('/user/:id', upload.single('img'), async (req, res) => {
 // TODOS LOS animales
 app.get('/animal', async (req, res) => {
     try {
-        const { rows } = await pool.body('SELECT * FROM "animal"');
+        const { rows } = await pool.query('SELECT * FROM "animal"');
         res.json(rows);
     } catch (error) {
-        console.error('Error al obtener usuarios:', error);
+        console.error('Error al obtener animales:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });

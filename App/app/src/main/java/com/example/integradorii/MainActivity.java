@@ -21,10 +21,8 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Crear un Intent para iniciar la actividad HomeActivity
                 Intent intent = new Intent(MainActivity.this, Login.class);
                 startActivity(intent);
-                // Finaliza MainActivity para que el usuario no pueda regresar aquí presionando el botón de retroceso
                 finish();
             }
         }, 3000);
