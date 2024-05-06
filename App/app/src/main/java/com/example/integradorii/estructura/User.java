@@ -15,18 +15,15 @@ public class User {
     private boolean active;
     private String code;
 
-    public User(int idUser, String username, String name, String birthdate, String email, String password, String imgProfile, String phone, String gender, boolean active,String code) {
-        this.idUser = idUser;
+    public User(String username, String name, String birthdate, String email, String password, String phone, String gender, boolean active) {
         this.username = username;
         this.name = name;
         this.birthdate = birthdate;
         this.email = email;
         this.password = password;
-        this.imgProfile = imgProfile;
         this.phone = phone;
         this.gender = gender;
         this.active = active;
-        this.code = code;
     }
 
     public User(String email, String code, String password) {

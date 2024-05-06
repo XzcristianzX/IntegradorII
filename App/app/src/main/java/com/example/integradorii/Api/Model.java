@@ -83,7 +83,7 @@ public class Model {
     public void registerUser(String username, String name, String birthdate, String email, String password, String img, String phone, String gender, final UserCallback callback) {
         // Crear un objeto de tipo User con los datos proporcionados
         boolean active= true;
-        User Usernew = new User(1,username,  name,  birthdate,  email,  password,  img,  phone,  gender,active,"");
+        User Usernew = new User(username,  name,  birthdate,  email,  password,  phone,  gender,active);
         // Realizar la llamada a la API para registrar el usuario
         Call<User> call = apiService.register(Usernew);
         call.enqueue(new Callback<User>() {
@@ -107,8 +107,7 @@ public class Model {
     }
 
     public void actulizarUser(int id,String nombre, String password,String img,String phone,String user_name, final UserCallback callback) {
-        User Usernew = new User(0,user_name,  nombre,"  birthdate",  "email",password,  img,  phone,  "gender",true,"");
-
+        User Usernew = new User(user_name,  nombre,"  birthdate",  "email",password,  phone,  "gender",true);
         Call<User> call = apiService.updateUser(id,Usernew);
         call.enqueue(new Callback<User>() {
             @Override

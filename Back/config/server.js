@@ -1,6 +1,6 @@
 
 /** Importación type: Module / ES */
-import express from 'express';
+const express = require('express');
 import bodyParser from 'body-parser'; 
 import { exports } from "./default.js";
 import router from "../routes/index.routes.js";
