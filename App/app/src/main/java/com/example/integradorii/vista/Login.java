@@ -27,24 +27,25 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Login extends AppCompatActivity {
-    TextView register;
-    EditText user, pass;
+    TextView btRegister;
+    Button btLogin;
+    EditText etEmail, etpass;
     private Socket socket;
-    Retrofit retrofit;
-    String IP = "http://localhost:3000";
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.login);
 
-        register = findViewById(R.id.go_to_register);
-        user = findViewById(R.id.user);
-        pass = findViewById(R.id.pass);
+        btRegister = findViewById(R.id.go_to_register);
+        btLogin = findViewById(R.id.btn_login);
+        etEmail = findViewById(R.id.email);
+        etpass = findViewById(R.id.pass);
 
-        register.setOnClickListener(new View.OnClickListener() {
+        final Model model = new Model();
+
+        btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Register.class);
@@ -52,6 +53,38 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-   }
 
+        btLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = etEmail.getText().toString().trim();
+                String password = etpass.getText().toString().trim();
+
+                model.loginUser(email, password, new Model.UserCallback() {
+                    @Override
+                    public void onSuccess(User user) {
+
+                        Toast.makeText(Login.this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Login.this, Verificar.class);
+                        intent.putExtra("name",user.getName());
+                        intent.putExtra("phone",user.getPhone());
+                        intent.putExtra("user_name",user.getUsername());
+                        intent.putExtra("mail",email);
+                        //aqui pasar los demas datos
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        // Error de autenticación
+                        Toast.makeText(Login.this, "Error: Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+
+    }
 }
+

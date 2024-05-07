@@ -21,7 +21,7 @@ const io = socketIo(server);
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
-    database: 'integrador',
+    database: 'animal',
     password: 'admin',
     port: 5432,
 });
@@ -40,30 +40,38 @@ const upload = multer({ storage });
 
 // Función para enviar correo electrónico con el código de seguridad
 async function sendSecurityCode(email, code) {
-   // Guardar el código en la base de datos
+    try {
+        // Configurar el objeto de opciones del correo electrónico
+        const mailOptions = {
+            from: 'cristiaykarol1986@gmail.com',
+            to: email, // Usar la dirección de correo electrónico proporcionada como argumento
+            subject: 'Código de seguridad para iniciar sesión',
+            text: `Tu código de seguridad es: ${code}`
+        };
 
-    const body = 'UPDATE "user" SET codigo_login = $1 WHERE mail = $2';
-    await pool.query(body, [code, email]);
+        // Configurar el transporte SMTP para enviar el correo electrónico
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'cristiaykarol1986@gmail.com', // Correo electrónico desde el que se enviará el código
+                pass: 'javx opcd ygro nqsu' // Contraseña del correo electrónico
+            }
+        });
 
-    // Configurar el objeto de opciones del correo electrónico dentro de la función
-    const mailOptions = {
-        from: 'cristiaykarol1986@gmail.com',
-        to: email, // Usar la dirección de correo electrónico proporcionada como argumento
-        subject: 'Código de seguridad para iniciar sesión',
-        text: `Tu código de seguridad es: ${code}`
-    };
+        // Actualizar la base de datos con el código de seguridad
+        const body = 'UPDATE "user" SET codigo_login = $1 WHERE mail = $2';
+        const { rows } = await pool.query(body, [code, email]);
 
-    // Configurar el transporte SMTP para enviar el correo electrónico
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'cristiaykarol1986@gmail.com', // Correo electrónico desde el que se enviará el código
-            pass: 'javx opcd ygro nqsu' // Contraseña del correo electrónico
-        }
-    });
 
-    // Enviar el correo electrónico con las opciones definidas anteriormente
-    await transporter.sendMail(mailOptions);
+        console.log('Código de seguridad guardado en la base de datos.');
+
+        // Enviar el correo electrónico con las opciones definidas anteriormente
+        await transporter.sendMail(mailOptions);
+
+        console.log('Correo electrónico con código de seguridad enviado correctamente.');
+    } catch (error) {
+        console.error('Error al enviar el correo electrónico:', error);
+    }
 }
 
 
@@ -109,27 +117,31 @@ app.post('/login', async (req, res) => {
 // Ruta para verificar el código de seguridad y permitir el acceso
 app.post('/verify', async (req, res) => {
     const { email, code } = req.body;
-
+    console.log('Correo electrónico:', email);
     try {
+        console.log(code)
+        console.log(email)
         // Consultar la base de datos para verificar si el código es correcto
-        const body = 'SELECT * FROM "user" WHERE mail = $1 AND codigo_login = $2';
-        const { rows } = await pool.body(body, [email, code]);
+        const query = 'SELECT * FROM "user" WHERE mail = $1 AND codigo_login = $2';
+        const { rows } = await pool.query(query, [email, code]);
 
         // Verificar si se encontró un usuario con el correo electrónico y código de seguridad proporcionados
-        const isCodeCorrect = rows.length > 0;
+        const user = rows[0];
 
-        if (isCodeCorrect) {
-            // Si el código es correcto, permitir el acceso
-            res.status(200).json({ message: 'Código de seguridad correcto. Acceso permitido.' });
+        if (user) {
+            // Si se encontró un usuario con el correo electrónico y código de seguridad proporcionados, devolver los detalles del usuario
+            res.status(200).json({ message: 'Código de seguridad correcto. Acceso permitido.', user: user });
         } else {
-            // Si el código es incorrecto, denegar el acceso
-            res.status(401).json({ error: 'Código de seguridad incorrecto. Acceso denegado.' });
+            // Si el código es incorrecto o el usuario no existe, denegar el acceso
+            res.status(401).json({ error: 'Código de seguridad incorrecto o usuario no encontrado. Acceso denegado.' });
         }
     } catch (error) {
         console.error('Error al verificar el código de seguridad en la base de datos:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
+
+
 // Configurar Express para servir archivos estáticos desde el directorio 'images'
 app.use('/images', express.static(path.join(__dirname, 'images')));
 // Ruta para subir una imagen

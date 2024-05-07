@@ -157,10 +157,10 @@
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/user"
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Usuario"
+                    android:hint="Correo"
                     android:textColor="@color/hintColor"
                     android:textCursorDrawable="@color/hintColor" />
             </com.google.android.material.textfield.TextInputLayout>

@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Model {
-    private static final String BASE_URL = "http://192.168.1.11:3000";
+    private static final String BASE_URL = "http://192.168.1.4:3000";
 
     private ApiService apiService;
 
@@ -80,7 +80,7 @@ public class Model {
             }
         });
     }
-    public void registerUser(String username, String name, String birthdate, String email, String password, String img, String phone, String gender, final UserCallback callback) {
+    public void registerUser(String username, String name, String birthdate, String email, String password, String phone, String gender, final UserCallback callback) {
         // Crear un objeto de tipo User con los datos proporcionados
         boolean active= true;
         User Usernew = new User(username,  name,  birthdate,  email,  password,  phone,  gender,active);

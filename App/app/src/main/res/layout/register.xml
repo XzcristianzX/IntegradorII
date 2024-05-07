@@ -182,7 +182,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/genero"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:entries="@array/gender"
