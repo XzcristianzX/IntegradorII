@@ -36,7 +36,7 @@ dependencies {
     implementation ("io.socket:socket.io-client:2.0.0") {
         exclude("org.json","json")
     }
-
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
     implementation ("org.postgresql:postgresql:42.2.24")
 
 

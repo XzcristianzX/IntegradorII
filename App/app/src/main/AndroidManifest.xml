@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
@@ -13,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IntegradorII"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCEN-Dy7BxK_p93gyRsGXVsl9Gn0e5CsCE"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -24,6 +31,10 @@
         </activity>
         <activity
             android:name=".vista.Home"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".vista.MapsActivity"
             android:exported="true">
         </activity>
         <activity
