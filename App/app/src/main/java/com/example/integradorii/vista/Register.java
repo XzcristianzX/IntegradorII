@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -34,27 +35,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Register extends AppCompatActivity {
 
-//    private Button btRegister;
-//    private ImageButton btCerrar;
-//    private EditText etUsuario, etNombre, etFechaNacimiento, etTelefono, etCorreo, etPassword, etPasswordConfi;
-//    private Spinner spinnerGender;
-
     ImageButton back;
     Button btnRegister;
     TextView backLogin;
     TextInputEditText namein, userin, emailin, passin, phonein, datein;
     Spinner spinnerGender;
-    Model model;
+    Model model = new Model();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-
         back = findViewById(R.id.btn_back);
         backLogin = findViewById(R.id.go_to_login);
-
         namein = findViewById(R.id.namein);
         userin = findViewById(R.id.userin);
         emailin = findViewById(R.id.emailin);
@@ -62,20 +56,10 @@ public class Register extends AppCompatActivity {
         phonein = findViewById(R.id.phonein);
         datein = findViewById(R.id.datein);
         btnRegister = findViewById(R.id.btn_register);
+        spinnerGender = findViewById(R.id.genero);
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
-
-        spinnerGender = findViewById(R.id.genero);
-        model = new Model();
-
-        // Definir un array de strings para los géneros
-        String[] generos = {"M", "H", "I"};
-        // Crear un ArrayAdapter utilizando el array de géneros y el diseño predeterminado
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, generos);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Aplicar el ArrayAdapter al Spinner
-        spinnerGender.setAdapter(adapter);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,18 +73,10 @@ public class Register extends AppCompatActivity {
                 intentLogin();
             }
         });
-
-
     }
 
-    public void intentLogin() {
-        Intent intent = new Intent(getApplicationContext(), Login.class);
-        startActivity(intent);
-        finish();
-    }
     public void register() {
         try {
-
             String userRegister = userin.getText().toString();
             String nombre = namein.getText().toString();
             String fecha = datein.getText().toString();
@@ -108,8 +84,7 @@ public class Register extends AppCompatActivity {
             String pin = passin.getText().toString();
             String pin2 = passin.getText().toString();
             String tel = phonein.getText().toString();
-            String genero = spinnerGender.getSelectedItem().toString();
-
+            String genero = validarGenero();
 
             if (genero.isEmpty() && tel.isEmpty() && correo.isEmpty() && nombre.isEmpty() && pin.isEmpty() && pin2.isEmpty() && pin.equals(pin2)) {
                 Toast.makeText(this, "ingrese todos los datos", Toast.LENGTH_SHORT).show();
@@ -138,9 +113,7 @@ public class Register extends AppCompatActivity {
                 model.registerUser(userRegister, nombre, fecha, correo, pin, tel, genero, new Model.UserCallback() {
                     @Override
                     public void onSuccess(User user) {
-                        // Usuario autenticado correctamente
                         Toast.makeText(Register.this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
-
                         Intent intent = new Intent(Register.this, Home.class);
                         intent.putExtra("correo", correo);
                         startActivity(intent);
@@ -149,12 +122,9 @@ public class Register extends AppCompatActivity {
 
                     @Override
                     public void onFailure() {
-                        // Error de autenticación
-                        Toast.makeText(Register.this, "Error: Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, "Error: Algo ha salido mal", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
             }
         } catch (Exception e) {
             Toast.makeText(this, "Error al guardar los datos del usuario",
@@ -180,5 +150,30 @@ public class Register extends AppCompatActivity {
             }
         }
         return false;
+    }
+
+    public String validarGenero() {
+        final String[] selectedItem = {""};
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.gender, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGender.setAdapter(adapter);
+        spinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                selectedItem[0] = parentView.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                selectedItem[0] = "";
+            }
+        });
+        return selectedItem[0];
+    }
+    public void intentLogin() {
+        Intent intent = new Intent(getApplicationContext(), Login.class);
+        startActivity(intent);
+        finish();
     }
 }

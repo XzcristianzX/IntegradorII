@@ -21,6 +21,9 @@ Run Producción:
 
 npm install nodemailer
 npm install randomatic
+npm install socket.io
+npm install multer
+npm install pg
 
 
 Ejemplo http://localhost:3000/user
@@ -78,5 +81,25 @@ Ejemplo http://localhost:3000/user
 <code>PUT //otro</code> - Petición solo GET
 
 <code>DELETE /</code> - Petición básica de enrutado
+
+
+json para el registro
+
+{
+    "username": "pedro2",
+    "name": "pedro",
+    "birthdate":"10/10/10",
+    "email":"ykpaola18@gmail.com",
+    "password":"12345",
+    "img_profile":"",
+    "phone":"123456789",
+    "gender":"F",
+    "active":"true"
+}
+
+json para el login 
+{
+    
+}
 
 

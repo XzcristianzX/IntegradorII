@@ -12,11 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.estructura.User;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class Verificar extends AppCompatActivity {
-    Button btaceptar,btcancelar;
 
-    EditText editCode;
+    Button vericationButton;
+    TextInputEditText verificationCode;
 
     String email;
 
@@ -24,9 +25,10 @@ public class Verificar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.verificar);
-        btaceptar = findViewById(R.id.btaceptar);
-        btcancelar = findViewById(R.id.btcancelar);
-        editCode = findViewById(R.id.code);
+
+        verificationCode = findViewById(R.id.verication_code);
+        vericationButton = findViewById(R.id.verication_button);
+
         final Model model = new Model();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -35,10 +37,10 @@ public class Verificar extends AppCompatActivity {
             }
         }
 
-        btaceptar.setOnClickListener(new View.OnClickListener() {
+        vericationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String code = editCode.getText().toString().trim();
+                String code = verificationCode.getText().toString().trim();
                 model.verificarUser(email,code, new Model.UserCallback() {
                     @Override
                     public void onSuccess(User user) {
@@ -64,13 +66,13 @@ public class Verificar extends AppCompatActivity {
             }
         });
 
-        btcancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Verificar.this, Login.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        btcancelar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Verificar.this, Login.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
     }
 }

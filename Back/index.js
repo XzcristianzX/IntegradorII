@@ -26,7 +26,6 @@ const pool = new Pool({
     port: 5432,
 });
 
-// Middleware para parsear JSON
 app.use(express.json());
 
 // Configurar multer para gestionar la subida de archivos
@@ -80,7 +79,7 @@ function generateSecurityCode() {
     return randomize('0', 4);
 }
 
-// Ruta para solicitar iniciar sesión y verificar credenciales
+// INICIO DE SESION
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log('Correo electrónico:', email);
@@ -114,7 +113,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Ruta para verificar el código de seguridad y permitir el acceso
+// VERIFICAR CÓDIGOS
 app.post('/verify', async (req, res) => {
     const { email, code } = req.body;
     console.log('Correo electrónico:', email);
@@ -161,7 +160,8 @@ app.get('/user', async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor'});
     }
 });
-//REGISTER
+
+//REGISTRO DE USUARIOS
 app.post('/user', async (req, res) => {
     const { username, name, birthdate, email, password, img_profile, phone, gender, active } = req.body;
     console.log (username)
@@ -180,7 +180,8 @@ app.post('/user', async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
-// Ruta para actualizar datos de usuario
+
+// ACTUALIZAR USUARIOS
 app.put('/user/:id', upload.single('img'), async (req, res) => {
     const userId = req.params.id;
     const { user_name, name, birthdate, email, password, phone, gender } = req.body;
@@ -251,6 +252,7 @@ app.put('/user/:id', upload.single('img'), async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
+
 // TODOS LOS animales
 app.get('/animal', async (req, res) => {
     try {
@@ -261,7 +263,8 @@ app.get('/animal', async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
-//REGISTER animal
+
+//REGISTRAR MASCOTA
 app.post('/animal', upload.single('img'), async (req, res) => {
     const { type, race, location, owner, name, weight, size, gender, birthdate,img } = req.body;
     try {
@@ -294,7 +297,9 @@ app.post('/animal', upload.single('img'), async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
-// Ruta para actualizar datos de animal
+
+
+//ACTUALIZAR INFOTMACIÓN DE MASCOTA
 app.put('/animal/:id', upload.single('img'), async (req, res) => {
     const id_animal = req.params.id;
     const { type, race, location, owner, name, weight, size, gender, img, birthdate } = req.body;
@@ -373,6 +378,7 @@ app.put('/animal/:id', upload.single('img'), async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
+
 // TODOS LOS POST
 app.get('/post', async (req, res) => {
     try {
@@ -383,7 +389,9 @@ app.get('/post', async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
-//REGISTER post
+
+
+//CREAR UN POST
 app.post('/post', upload.single('img'), async (req, res) => {
     const { title, body, id_user, status, created_at} = req.body;
     const filename = req.file ? req.file.filename : null;
@@ -402,7 +410,8 @@ app.post('/post', upload.single('img'), async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
-// UPDATE post
+
+// ACTUALIZAR UN POST
 app.put('/post/:id', upload.single('img'), async (req, res) => {
     const postId = req.params.id;
     const { title, body, status, created_at } = req.body;
@@ -455,7 +464,9 @@ app.put('/post/:id', upload.single('img'), async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
-// TODOS LOS consejos
+
+
+// CONEJOS
 app.get('/cuidados', async (req, res) => {
     try {
         const body = `

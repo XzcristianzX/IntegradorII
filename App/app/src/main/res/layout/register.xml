@@ -45,7 +45,7 @@
             android:text="REGISTRO"
             android:textColor="@color/black"
             android:textSize="35dp"
-            android:layout_marginBottom="15dp"/>
+            android:layout_marginBottom="10dp"/>
 
     </LinearLayout>
 
@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -100,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -135,7 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -152,7 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -169,14 +169,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Contraseña"
+                    android:hint="Contraseña de 4 digitos segura"
+                    android:textColor="@color/hintColor"
+                    android:textCursorDrawable="@color/hintColor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTheme.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmpassin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirmar contraseña"
                     android:textColor="@color/hintColor"
                     android:textCursorDrawable="@color/hintColor" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -186,7 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:entries="@array/gender"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:background="@color/backgorund"
@@ -203,7 +220,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="190dp"
                     android:layout_height="55dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:backgroundTint="@color/buttonColor"
                     android:text="Registrarse"
                     android:textColor="@color/white"
@@ -215,7 +232,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView

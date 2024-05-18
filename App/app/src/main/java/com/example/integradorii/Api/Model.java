@@ -14,17 +14,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Model {
-    private static final String BASE_URL = "http://192.168.1.4:3000";
+    private static final String BASE_URL = "http://192.168.1.7:3000";
 
     private ApiService apiService;
 
     public Model() {
-        // Inicializar ApiService
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         apiService = retrofit.create(ApiService.class);
     }
 
@@ -53,7 +51,6 @@ public class Model {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                // Error en la solicitud
                 callback.onFailure();
             }
         });
@@ -66,10 +63,8 @@ public class Model {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    // Usuario autenticado correctamente
                     callback.onSuccess(response.body());
                 } else {
-                    // Error de autenticación
                     callback.onFailure();
                 }
             }
@@ -81,19 +76,15 @@ public class Model {
         });
     }
     public void registerUser(String username, String name, String birthdate, String email, String password, String phone, String gender, final UserCallback callback) {
-        // Crear un objeto de tipo User con los datos proporcionados
         boolean active= true;
         User Usernew = new User(username,  name,  birthdate,  email,  password,  phone,  gender,active);
-        // Realizar la llamada a la API para registrar el usuario
         Call<User> call = apiService.register(Usernew);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    // Usuario registrado correctamente
                     callback.onSuccess(response.body());
                 } else {
-                    // Error al registrar usuario
                     callback.onFailure();
                 }
             }
@@ -113,23 +104,19 @@ public class Model {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    // Usuario autenticado correctamente
                     callback.onSuccess(response.body());
                 } else {
-                    // Error de autenticación
                     callback.onFailure();
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                // Error en la solicitud
                 callback.onFailure();
             }
         });
     }
 
-    // Métodos para operaciones relacionadas con User (login, register, update) aquí...
     public void registerAnimal(Animal animal, final AnimalCallback callback) {
         Call<Animal> call = apiService.registerAnimal(animal);
         call.enqueue(new Callback<Animal>() {
@@ -148,6 +135,7 @@ public class Model {
             }
         });
     }
+
     public void updateAnimal(int animalId, Animal animal, final AnimalCallback callback) {
         Call<Animal> call = apiService.updateAnimal(animalId, animal);
         call.enqueue(new Callback<Animal>() {
@@ -166,6 +154,7 @@ public class Model {
             }
         });
     }
+
     public void createPost(Post post, final PostCallback callback) {
         Call<Post> call = apiService.createPost(post);
         call.enqueue(new Callback<Post>() {
@@ -184,6 +173,7 @@ public class Model {
             }
         });
     }
+
     public void updatePost(int postId, Post post, final PostCallback callback) {
         Call<Post> call = apiService.updatePost(postId, post);
         call.enqueue(new Callback<Post>() {
@@ -202,6 +192,7 @@ public class Model {
             }
         });
     }
+
     public void getCuidados(final CarefulCallback callback) {
         Call<List<Careful>> call = apiService.getCuidados();
         call.enqueue(new Callback<List<Careful>>() {
@@ -221,10 +212,6 @@ public class Model {
         });
     }
 
-
-
-
-    // Interfaz de callback para manejar el resultado de la autenticación del usuario
     public interface UserCallback {
         void onSuccess(User user);
         void onFailure();

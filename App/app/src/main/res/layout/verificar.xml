@@ -3,54 +3,189 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgorund">
 
-    <Button
-        android:id="@+id/btaceptar"
+<!--    <Button-->
+<!--        android:id="@+id/btaceptar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="80dp"-->
+<!--        android:text="aceptar"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.146"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/btcancelar"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/code"-->
+<!--        app:layout_constraintVertical_bias="0.034" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btcancelar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="96dp"-->
+<!--        android:layout_marginTop="80dp"-->
+<!--        android:text="cancelar"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/code"-->
+<!--        app:layout_constraintVertical_bias="0.034" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="104dp"-->
+<!--        android:text="Ingresa el codigo de seguridad"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.497"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/code"-->
+<!--        android:layout_width="232dp"-->
+<!--        android:layout_height="57dp"-->
+<!--        android:layout_marginTop="80dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="numberPassword"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.497"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="aceptar"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        android:layout_marginTop="60dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:text="VERIFICAR"
+            android:textSize="35dp"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:background="@drawable/round_corners"
+        android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
-        app:layout_constraintStart_toEndOf="@+id/btcancelar"
-        app:layout_constraintTop_toBottomOf="@+id/code"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintHorizontal_bias="100.0"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/btcancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="80dp"
-        android:text="cancelar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/code"
-        app:layout_constraintVertical_bias="0.034" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Verifica tu incio de sesión"
+            android:textColor="@color/titleColorText"
+            android:textSize="25dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:text="Ingresa el codigo de seguridad"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/code"
-        android:layout_width="232dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:inputType="numberPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTheme.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/verication_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Código"
+                    android:textColor="@color/hintColor"
+                    android:textCursorDrawable="@color/hintColor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/verication_button"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="190dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="30dp"
+                    android:backgroundTint="@color/buttonColor"
+                    android:text="Confirmar"
+                    android:textSize="15dp"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:id="@+id/textview"
+                    android:layout_height="wrap_content"
+                    android:layout_width="300dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Nota: El código de verificación ha sido enviado a la dirección de correo registrada"/>
+
+<!--                <TextView-->
+<!--                    android:id="@+id/go_to_register"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:textSize="15dp"-->
+<!--                    android:textColor="@color/buttonColor"-->
+<!--                    android:text=" Registrarse"-->
+<!--                    android:clickable="true"-->
+<!--                    android:onClick="register"/>-->
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

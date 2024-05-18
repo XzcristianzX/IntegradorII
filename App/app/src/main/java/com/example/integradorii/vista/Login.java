@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.estructura.User;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Arrays;
 
