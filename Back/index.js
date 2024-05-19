@@ -273,7 +273,7 @@ app.post('/animal', upload.single('img'), async (req, res) => {
         const img = filename ? `http://localhost:3000/images/${filename}` : null;
 
         // Construir la consulta de inserción dinámicamente
-        let body = 'INSERT INTO "animal" (id_type, id_race, id_location, id_vaccine, id_owner, name, weight, size, gender, birthdate','status';
+        let body = 'INSERT INTO "animal" (id_type, id_race, id_location, id_vaccine, id_owner, name, weight, size, gender, birthdate,status';
         let values = [type, race, location, owner, name, weight, size, gender, birthdate];
 
         // Agregar la columna de imagen si se proporcionó
@@ -514,6 +514,80 @@ app.get('/cuidados', async (req, res) => {
         res.json(formattedRows);
     } catch (error) {
         console.error('Error al obtener cuidados:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
+app.post('/vaccines', async (req, res) => {
+    const { name, description } = req.body;
+    try {
+        const result = await pool.query(
+            'INSERT INTO vaccine (name, description) VALUES ($1, $2) RETURNING *',
+            [name, description]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (error) {
+        console.error('Error al agregar la vacuna:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
+// READ - Obtener todas las vacunas
+app.get('/vaccines', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM vaccine');
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error('Error al obtener las vacunas:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
+// READ - Obtener una vacuna por ID
+app.get('/vaccines/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query('SELECT * FROM vaccine WHERE id_vaccine = $1', [id]);
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Vacuna no encontrada' });
+        }
+        res.status(200).json(result.rows[0]);
+    } catch (error) {
+        console.error('Error al obtener la vacuna:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
+// UPDATE - Actualizar una vacuna
+app.put('/vaccines/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, description } = req.body;
+    try {
+        const result = await pool.query(
+            'UPDATE vaccine SET name = $1, description = $2 WHERE id_vaccine = $3 RETURNING *',
+            [name, description, id]
+        );
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Vacuna no encontrada' });
+        }
+        res.status(200).json(result.rows[0]);
+    } catch (error) {
+        console.error('Error al actualizar la vacuna:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
+// DELETE - Eliminar una vacuna
+app.delete('/vaccines/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query('DELETE FROM vaccine WHERE id_vaccine = $1 RETURNING *', [id]);
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Vacuna no encontrada' });
+        }
+        res.status(200).json({ message: 'Vacuna eliminada correctamente' });
+    } catch (error) {
+        console.error('Error al eliminar la vacuna:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
