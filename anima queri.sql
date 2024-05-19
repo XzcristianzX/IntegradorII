@@ -1,218 +1,162 @@
-ALTER TABLE "user"
-ALTER COLUMN img_profile TYPE TEXT;
-
-
-INSERT INTO "user" (user_name, name, birthdate, mail, password, gender)
-VALUES ('prueba1', 'John Doe', '1980-01-01', 'john.doe1@email.com', '1234', 'M'),
-       ('janeblair2', 'Jane Blair', '1985-02-14', 'jane.blair1@email.com', 'secretpass', 'F'),
-       ('petlover1233', 'Alice Johnson', '1990-03-10', 'alice.johnson1@email.com', 'ilovepets!', 'F');
-select * from public.user;
-
-
-INSERT INTO "type_animal" (name)
-VALUES ('Dog'),
-       ('Cat'),
-       ('Rabbit');
-select * from public.type_animal;
-
-INSERT INTO "race" (id_careful, name, description)
-VALUES (1, 'Golden Retriever', 'Large, friendly dog breed'),  -- Foreign Key to careful 1 (placeholder for now)
-       (1, 'Persian Cat', 'Longhaired, flat-faced cat breed'),  -- Foreign Key to careful 1 (placeholder for now)
-       (2, 'Holland Lop', 'Small, docile rabbit breed');       -- Foreign Key to careful 3 (placeholder for now)
-select * from public.race;	   
-
-	   
-INSERT INTO "vaccine" (name, created_at, description)
-VALUES ('Rabies', '2024-03-15', 'Protects against rabies'),
-       ('Distemper', '2024-03-15', 'Protects against distemper virus');
-select * from public.vaccine;
-
-
-INSERT INTO "activity" (name, duration_time, implements)
-VALUES ('Walking', '30 minutes', 'Leash, collar'),
-       ('Playing fetch', '15 minutes', 'Ball');
-select * from public.activity;
-
-	   
-
-INSERT INTO "careful" (id_vaccine, id_activity, feeding, bathroom)
-VALUES (1, 1, 'Dry kibble, twice a day', 'Daily litter box cleaning'),  -- Foreign Keys are placeholders
-       (2, 2, 'Wet food, once a day', 'Sand bath every other day');     -- Foreign Keys are placeholders
-select * from public.careful;   
-
-
-INSERT INTO "neighborhood" (name)
-VALUES ('Greenwich'),
-       ('Central Park'),
-       ('Soho');
-select * from public.neighborhood;   
-	 
-	  
-INSERT INTO "location" (id_neighborhood, coordenate, route, created_at)
-VALUES (1, '40.7128° N, 74.0059° W', '123 Main St, New York, NY', '2024-03-15'),
-       (2, '40.7850° N, 73.9667° W', '456 Central Park Ave, New York, NY', '2024-03-15'),
-       (3, '40.7228° N, 74.0000° W', '789 Broadway, New York, NY', '2024-03-15');
-select * from public.location; 
-
-
-INSERT INTO "activity" (name, duration_time, implements)
-VALUES ('Walking', '30 minutes', 'Leash, collar'),
-       ('Playing fetch', '15 minutes', 'Ball');
-select * from public.activity; 
-
-
-INSERT INTO "vaccine" (name, created_at, description)
-VALUES ('Rabies', '2024-03-15', 'Protects against rabies'),
-       ('Distemper', '2024-03-15', 'Protects against distemper virus');
-select * from public.vaccine; 
-
-	   
-INSERT INTO "animal" (id_type, id_race, id_location, id_owner, name, weight, size, gender, birthdate, img)
-VALUES (1, 10, 1, 1, 'Buddy', '25 kg', 'Medium', 'M', '2022-12-25', 'image.jpg'),  -- Foreign Keys referencing previous tables
-       (2, 11, 2, 2, 'Luna', '5 kg', 'Small', 'F', '2023-01-01', 'image2.jpg'),  -- Foreign Keys referencing previous tables
-       (3, 12, 3, 3, 'Snowball', '2 kg', 'Small', 'M', '2023-05-10', 'image3.jpg');  -- Foreign Keys referencing previous tables
-select * from public.animal; 
-
-
-
-
-select * from public.animal; 
-select * from public.vaccine; 
-select * from public.activity; 
-select * from public.location; 
-select * from public.neighborhood;   
-select * from public.careful;   
-select * from public.activity;
-select * from public.vaccine;
-select * from public.race;	   
-select * from public.type_animal;
-select * from public.user;
-
-
-
-
 CREATE TABLE "user" (
-  "id_user" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "user_name" varchar(20) UNIQUE NOT NULL,
-  "name" varchar(50) NOT NULL,
-  "birthdate" date NOT NULL,
-  "mail" varchar(50) UNIQUE NOT NULL,
-  "password" varchar(64) NOT NULL,
-  "img_profile" varchar,
-  "phone" varchar (10),
-  "gender" char(1) NOT NULL
-);
-
-CREATE TABLE "animal" (
-  "id_animal" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "id_type" SERIAL NOT NULL,
-  "id_race" SERIAL NOT NULL,
-  "id_location" SERIAL NOT NULL,
-  "id_owner" SERIAL NOT NULL,
-  "name" varchar(50) NOT NULL,
-  "weight" varchar(20) NOT NULL,
-  "size" varchar(20) NOT NULL,
-  "gender" char(1) NOT NULL,
-  "img" varchar,
-  "birthdate" date NOT NULL
+  "id_user" SERIAL PRIMARY KEY NOT NULL,
+  "user_name" VARCHAR(20) UNIQUE NOT NULL,
+  "name" VARCHAR(50) NOT NULL,
+  "birthdate" VARCHAR NOT NULL,
+  "mail" VARCHAR(50) UNIQUE NOT NULL,
+  "password" VARCHAR(4) NOT NULL,
+  "img_profile" VARCHAR,
+  "gender" CHAR NOT NULL,
+  "status" BOOLEAN,
+  "phone" VARCHAR(10),
+  "codigo_login" VARCHAR(4)
 );
 
 CREATE TABLE "type_animal" (
-  "id_type" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "name" varchar(20) NOT NULL
-);
-
-CREATE TABLE "race" (
-  "id_race" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "id_careful" SERIAL NOT NULL,
-  "name" varchar(20) NOT NULL,
-  "description" text
-);
-
-CREATE TABLE "careful" (
-  "id_careful" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "id_vaccine" SERIAL NOT NULL,
-  "id_activity" SERIAL NOT NULL,
-  "feeding" text,
-  "bathroom" text
+  "id_type" SERIAL PRIMARY KEY NOT NULL,
+  "name" VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE "location" (
-  "id_location" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "id_neighborhood" SERIAL NOT NULL,
-  "coordenate" varchar(50),
-  "route" varchar(255),
-  "created_at" timestamp
-);
-
-CREATE TABLE "neighborhood" (
-  "id_neighborhood" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "name" varchar(50) UNIQUE NOT NULL
-);
-
-CREATE TABLE "donation" (
-  "id_donation" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "id_user" SERIAL NOT NULL,
-  "amount" money,
-  "description" text,
-  "created_at" timestamp
+  "id_location" SERIAL PRIMARY KEY NOT NULL,
+  "coordenate" VARCHAR,
+  "route" VARCHAR
 );
 
 CREATE TABLE "vaccine" (
-  "id_vaccine" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "name" varchar(20),
-  "created_at" timestamp,
-  "description" text
-);
-
-CREATE TABLE "adoption_post" (
-  "id_adoption_post" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "title" varchar(255),
-  "body" text,
-  "id_user" SERIAL NOT NULL,
-  "status" varchar(20),
-  "created_at" timestamp,
-  "img" varchar
+  "id_vaccine" SERIAL PRIMARY KEY NOT NULL,
+  "name" VARCHAR(20),
+  "created_at" VARCHAR,
+  "description" TEXT,
+  "status" BOOLEAN
 );
 
 CREATE TABLE "activity" (
-  "id_activity" SERIAL UNIQUE PRIMARY KEY NOT NULL,
-  "name" varchar,
-  "duration_time" varchar(20),
-  "implements" text
+  "id_activity" SERIAL PRIMARY KEY NOT NULL,
+  "duration_time" VARCHAR,
+  "implements" TEXT
 );
 
-COMMENT ON COLUMN "race"."description" IS 'Descripción breve de la raza del animal';
+CREATE TABLE "careful" (
+  "id_careful" SERIAL PRIMARY KEY NOT NULL,
+  "id_activity" INTEGER REFERENCES "activity"("id_activity"),
+  "feeding" TEXT,
+  "bathroom" TEXT
+);
 
-COMMENT ON COLUMN "careful"."feeding" IS 'El tipo de alimentación';
+CREATE TABLE "race" (
+  "id_race" SERIAL PRIMARY KEY NOT NULL,
+  "id_careful" INTEGER NOT NULL REFERENCES "careful"("id_careful"),
+  "name" VARCHAR(20) NOT NULL,
+  "description" TEXT
+);
 
-COMMENT ON COLUMN "careful"."bathroom" IS 'El tipo de baños ';
+CREATE TABLE "animal" (
+  "id_animal" SERIAL PRIMARY KEY NOT NULL,
+  "id_type" INTEGER NOT NULL REFERENCES "type_animal"("id_type"),
+  "id_race" INTEGER NOT NULL REFERENCES "race"("id_race"),
+  "id_vaccine" INTEGER REFERENCES "vaccine"("id_vaccine"),
+  "id_location" INTEGER REFERENCES "location"("id_location"),
+  "id_owner" INTEGER NOT NULL REFERENCES "user"("id_user"),
+  "name" VARCHAR NOT NULL,
+  "weight" VARCHAR NOT NULL,
+  "size" VARCHAR NOT NULL,
+  "gender" CHAR NOT NULL,
+  "img" VARCHAR,
+  "birthdate" DATE NOT NULL,
+  "status" BOOLEAN
+);
 
-COMMENT ON COLUMN "donation"."description" IS 'Descripción de la donación';
+CREATE TABLE "adoption_post" (
+  "id_adoption_post" SERIAL PRIMARY KEY NOT NULL,
+  "title" VARCHAR,
+  "body" TEXT,
+  "id_user" INTEGER REFERENCES "user"("id_user"),
+  "status" BOOLEAN,
+  "created_at" VARCHAR,
+  "img" VARCHAR
+);
 
-COMMENT ON COLUMN "vaccine"."description" IS 'Descripción de la vacuna';
 
-COMMENT ON COLUMN "adoption_post"."body" IS 'Contenido del post';
+-- Llenando la tabla user
+INSERT INTO "user" ("user_name", "name", "birthdate", "mail", "password", "img_profile", "gender", "status", "phone", "codigo_login")
+VALUES
+('jose123', 'José Pérez', '1990-01-01', 'jose@example.com', '1234', 'perfil1.jpg', 'M', TRUE, '5551234567', 'AB12'),
+('maria456', 'María Gómez', '1985-05-15', 'maria@example.com', '5678', 'perfil2.jpg', 'F', TRUE, '5559876543', 'CD34'),
+('luis789', 'Luis Martínez', '1978-08-20', 'luis@example.com', '9012', 'perfil3.jpg', 'M', FALSE, '5551230987', 'EF56');
 
+-- Llenando la tabla type_animal
+INSERT INTO "type_animal" ("name")
+VALUES
+('Perro'),
+('Gato'),
+('Ave');
 
+-- Llenando la tabla location
+INSERT INTO "location" ("coordenate", "route")
+VALUES
+('19.432608, -99.133209', 'Ciudad de México'),
+('40.712776, -74.005974', 'Nueva York');
 
+-- Llenando la tabla vaccine
+INSERT INTO "vaccine" ("name", "created_at", "description", "status")
+VALUES
+('Vacuna Rabia', '2022-01-01', 'Vacuna contra la rabia', TRUE),
+('Vacuna Parvovirus', '2023-01-01', 'Vacuna contra el parvovirus canino', TRUE);
 
-ALTER TABLE "animal" ADD FOREIGN KEY ("id_owner") REFERENCES "user" ("id_user");
+-- Llenando la tabla activity
+INSERT INTO "activity" ("duration_time", "implements")
+VALUES
+('30 minutos', 'Juguetes, correa'),
+('1 hora', 'Bicicleta, pelota');
 
-ALTER TABLE "animal" ADD FOREIGN KEY ("id_type") REFERENCES "type_animal" ("id_type");
+-- Llenando la tabla careful
+INSERT INTO "careful" ("id_activity", "feeding", "bathroom")
+VALUES
+(1, 'Alimentación regular dos veces al día', 'Baño una vez por semana'),
+(2, 'Alimentación especializada', 'Baño una vez al mes');
 
-ALTER TABLE "animal" ADD FOREIGN KEY ("id_race") REFERENCES "race" ("id_race");
+-- Llenando la tabla race
+INSERT INTO "race" ("id_careful", "name", "description")
+VALUES
+(1, 'Labrador Retriever', 'Raza amigable y enérgica, ideal para familias'),
+(2, 'Siamés', 'Raza de gato conocida por su belleza y carácter independiente');
 
-ALTER TABLE "animal" ADD FOREIGN KEY ("id_location") REFERENCES "location" ("id_location");
+-- Llenando la tabla animal
+INSERT INTO "animal" ("id_type", "id_race", "id_vaccine", "id_location", "id_owner", "name", "weight", "size", "gender", "img", "birthdate", "status")
+VALUES
+(1, 1, 1, 1, 1, 'Fido', '30 kg', 'Grande', 'M', 'fido.jpg', '2018-06-15', TRUE),
+(2, 2, 2, 2, 2, 'Mimi', '5 kg', 'Pequeño', 'F', 'mimi.jpg', '2020-09-10', TRUE);
 
-ALTER TABLE  "race"  ADD FOREIGN KEY ("id_careful") REFERENCES "careful" ("id_careful");
+-- Llenando la tabla adoption_post
+INSERT INTO "adoption_post" ("title", "body", "id_user", "status", "created_at", "img")
+VALUES
+('Adopción de Fido', 'Fido es un perro amigable y juguetón en busca de un hogar.', 1, TRUE, '2023-05-18', 'fido_adopcion.jpg'),
+('Adopción de Mimi', 'Mimi es una gata cariñosa y tranquila en busca de una familia.', 2, TRUE, '2023-06-01', 'mimi_adopcion.jpg');
 
-ALTER TABLE "location" ADD FOREIGN KEY ("id_neighborhood") REFERENCES "neighborhood" ("id_neighborhood");
+-- Seleccionar todos los usuarios
+SELECT * FROM "user";
 
-ALTER TABLE "careful"  ADD FOREIGN KEY  ("id_vaccine") REFERENCES "vaccine" ("id_vaccine") ;
+-- Seleccionar todos los tipos de animales
+SELECT * FROM "type_animal";
 
-ALTER TABLE "adoption_post" ADD FOREIGN KEY ("id_user") REFERENCES "user" ("id_user");
+-- Seleccionar todas las ubicaciones
+SELECT * FROM "location";
 
-ALTER TABLE "donation" ADD FOREIGN KEY ("id_user") REFERENCES "user" ("id_user");
+-- Seleccionar todas las vacunas
+SELECT * FROM "vaccine";
 
-ALTER TABLE  "careful"  ADD FOREIGN KEY ("id_activity") REFERENCES "activity" ("id_activity");
+-- Seleccionar todas las actividades
+SELECT * FROM "activity";
+
+-- Seleccionar todos los cuidados
+SELECT * FROM "careful";
+
+-- Seleccionar todas las razas
+SELECT * FROM "race";
+
+-- Seleccionar todos los animales
+SELECT * FROM "animal";
+
+-- Seleccionar todas las publicaciones de adopción
+SELECT * FROM "adoption_post";

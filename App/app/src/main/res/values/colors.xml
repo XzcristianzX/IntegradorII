@@ -7,4 +7,7 @@
     <color name="titleColorText">#005883</color>
     <color name="hintColor">#666666</color>
     <color name="buttonColor">#0096E0</color>
+    <color name="light_blue">#B0CBE9</color>
+    <color name="rounded_background_color">#EEF4FC</color>
+    <color name="text_color">#005883</color>
 </resources>
