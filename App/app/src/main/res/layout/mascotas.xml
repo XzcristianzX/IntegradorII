@@ -2,17 +2,142 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="#A8CCE4"
     android:padding="16dp">
 
+    <!-- Botón de atrás -->
     <ImageView
         android:id="@+id/back_arrow"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:src="@drawable/atras"
-        />
+        android:contentDescription="Botón de atrás"
+        android:layout_margin="16dp" />
+
+    <!-- Ícono de perfil y tarjeta -->
+    <LinearLayout
+        android:id="@+id/icon_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="16dp">
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/logouser"
+            android:contentDescription="Ícono de perfil"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/vacunas"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/vacunas"
+            android:contentDescription="Ícono de tarjeta"/>
+    </LinearLayout>
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/back_arrow"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="PERFIL DE TU MASCOTA"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+    <!-- Campos de entrada -->
+    <LinearLayout
+        android:id="@+id/input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NOMBRE: ------------------"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_background"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TIPO: ------------------"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_background"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RAZA: ------------------"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_background"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SEXO: ------------------"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_background"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DUEÑO: ------------------"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_background"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ESTADO"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_background"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"/>
+    </LinearLayout>
+
+    <!-- Botón de modificar datos -->
+    <Button
+        android:id="@+id/modify_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/input_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_background"
+        android:text="MODIFICAR DATOS"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:padding="16dp"/>
 </RelativeLayout>
