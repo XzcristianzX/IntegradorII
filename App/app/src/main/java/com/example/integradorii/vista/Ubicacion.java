@@ -64,4 +64,9 @@ public class Ubicacion extends AppCompatActivity implements OnMapReadyCallback {
         // Mover la cámara al marcador y ajustar el zoom
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, 12));
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

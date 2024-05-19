@@ -13,6 +13,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.integradorii.R;
+import com.example.integradorii.vista.mascota.Mascota;
+import com.example.integradorii.vista.post.PosAdopcion;
+import com.example.integradorii.vista.usuario.Usuario;
+import com.example.integradorii.vista.vacunas.Vacunas;
 
 public class Home extends AppCompatActivity {
 
@@ -20,7 +24,7 @@ public class Home extends AppCompatActivity {
     private LinearLayout consejosCuidados;
     private LinearLayout carnetVacunas;
     private LinearLayout ubicaMascota;
-    private ImageView backArrow,mascota,profile;
+    private ImageView backArrow, mascota, profile;
     String userName, id, name;
 
     @SuppressLint("MissingInflatedId")
@@ -48,6 +52,7 @@ public class Home extends AppCompatActivity {
                 Toast.makeText(this, "Hola: " + userName + " id: " + id + " name: " + name + " " + mail, Toast.LENGTH_SHORT).show();
             }
         }
+
         mascota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +60,7 @@ public class Home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +109,12 @@ public class Home extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        showLogoutConfirmationDialog();
+    }
+
     private void showLogoutConfirmationDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Cerrar sesión")
@@ -115,7 +127,13 @@ public class Home extends AppCompatActivity {
                         finish();
                     }
                 })
-                .setNegativeButton(android.R.string.no, null)
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Dismiss the dialog and call super.onBackPressed()
+                        dialog.dismiss();
+                        Home.super.onBackPressed();
+                    }
+                })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }

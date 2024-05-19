@@ -1,4 +1,4 @@
-package com.example.integradorii.vista;
+package com.example.integradorii.vista.usuario;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.integradorii.R;
+import com.example.integradorii.vista.Home;
 
-public class Mascota extends AppCompatActivity {
+public class Usuario extends AppCompatActivity {
     private ImageView backArrow;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +19,7 @@ public class Mascota extends AppCompatActivity {
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Mascota.this, Home.class);
+                Intent intent = new Intent(Usuario.this, Home.class);
                 startActivity(intent);
                 finish();
             }

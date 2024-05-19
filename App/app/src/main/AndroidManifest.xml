@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".vista.ActulizarUsuario"
+            android:name=".vista.usuario.ActulizarUsuario"
             android:exported="true">
         </activity>
         <activity
@@ -46,11 +46,11 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".vista.PosAdopcion"
+            android:name=".vista.post.PosAdopcion"
             android:exported="true">
         </activity>
         <activity
-            android:name=".vista.Register"
+            android:name=".vista.usuario.Register"
             android:exported="true">
         </activity>
         <activity
@@ -58,7 +58,7 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".vista.Vacunas"
+            android:name=".vista.vacunas.Vacunas"
             android:exported="true">
         </activity>
         <activity
@@ -66,22 +66,43 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".vista.Usuario"
+            android:name=".vista.usuario.Usuario"
             android:exported="true">
         </activity>
         <activity
-            android:name=".vista.Mascota"
+            android:name=".vista.mascota.Mascota"
             android:exported="true">
         </activity>
         <activity
-            android:name=".vista.ActulizarMascota"
+            android:name=".vista.mascota.ActulizarMascota"
             android:exported="true">
         </activity>
         <activity
-            android:name=".vista.ActulizarPost"
+            android:name=".vista.post.ActulizarPost"
             android:exported="true">
         </activity>
-        
+        <activity
+            android:name=".vista.mascota.InfoMascota"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".vista.mascota.RegistroMascota"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".vista.post.RegistrarPost"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".vista.vacunas.ActuactualizarVacuna"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".vista.vacunas.RegistroVacuna"
+            android:exported="true">
+        </activity>
+
+
     </application>
 
 </manifest>

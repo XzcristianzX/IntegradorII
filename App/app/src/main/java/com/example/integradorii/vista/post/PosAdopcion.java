@@ -1,26 +1,25 @@
-package com.example.integradorii.vista;
+package com.example.integradorii.vista.post;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.integradorii.MainActivity;
 import com.example.integradorii.R;
+import com.example.integradorii.vista.Home;
 
-public class Consejos extends AppCompatActivity {
+public class PosAdopcion extends AppCompatActivity {
     private ImageView backArrow;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.consejos);
+        setContentView(R.layout.postadopcion);
         backArrow = findViewById(R.id.back_arrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Consejos.this, Home.class);
+                Intent intent = new Intent(PosAdopcion.this, Home.class);
                 startActivity(intent);
                 finish();
             }

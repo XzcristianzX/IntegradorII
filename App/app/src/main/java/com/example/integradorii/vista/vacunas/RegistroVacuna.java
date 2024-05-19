@@ -1,40 +1,34 @@
-package com.example.integradorii.vista;
+package com.example.integradorii.vista.vacunas;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
-import com.example.integradorii.estructura.User;
+import com.example.integradorii.vista.Home;
+import com.example.integradorii.vista.usuario.Usuario;
 
-public class ActulizarMascota extends AppCompatActivity {
-
+public class RegistroVacuna extends AppCompatActivity {
     private ImageView backArrow;
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.actulizarmascota);
+        setContentView(R.layout.vacunas);
         backArrow = findViewById(R.id.back_arrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActulizarMascota.this, Mascota.class);
+                Intent intent = new Intent(RegistroVacuna.this, Home.class);
                 startActivity(intent);
                 finish();
             }
         });
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }
-

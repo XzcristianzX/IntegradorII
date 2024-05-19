@@ -1,4 +1,4 @@
-package com.example.integradorii.vista;
+package com.example.integradorii.vista.usuario;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.estructura.User;
+import com.example.integradorii.vista.Home;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
