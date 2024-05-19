@@ -167,7 +167,7 @@ app.post('/user', async (req, res) => {
     console.log (username)
     try {
         const { rows } = await pool.query(
-            'INSERT INTO "user" (user_name, name, birthdate, mail, password, img_profile, phone, gender, active) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+            'INSERT INTO "user" (user_name, name, birthdate, mail, password, img_profile, phone, gender, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
             [username, name, birthdate, email, password, img_profile, phone, gender, active]
         );
         const newUser = rows[0];
@@ -273,7 +273,7 @@ app.post('/animal', upload.single('img'), async (req, res) => {
         const img = filename ? `http://localhost:3000/images/${filename}` : null;
 
         // Construir la consulta de inserción dinámicamente
-        let body = 'INSERT INTO "animal" (id_type, id_race, id_location, id_owner, name, weight, size, gender, birthdate';
+        let body = 'INSERT INTO "animal" (id_type, id_race, id_location, id_vaccine, id_owner, name, weight, size, gender, birthdate,status';
         let values = [type, race, location, owner, name, weight, size, gender, birthdate];
 
         // Agregar la columna de imagen si se proporcionó
@@ -468,45 +468,46 @@ app.put('/post/:id', upload.single('img'), async (req, res) => {
 
 // CONEJOS
 app.get('/cuidados', async (req, res) => {
-    try {
-        const body = `
-            SELECT
-                careful.id_careful,
-                careful.feeding,
-                careful.bathroom,
-                (
-                    SELECT json_build_object(
-                        'name', vaccine.name,
-                        'created_at', vaccine.created_at,
-                        'description', vaccine.description
-                    )
-                    FROM vaccine
-                    WHERE vaccine.id_vaccine = careful.id_vaccine
-                ) AS vaccine,
-                (
-                    SELECT json_build_object(
-                        'name', activity.name,
-                        'duration_time', activity.duration_time,
-                        'implements', activity.implements
-                    )
-                    FROM activity
-                    WHERE activity.id_activity = careful.id_activity
-                ) AS activity
-            FROM
-                careful
-        `;
-        const { rows } = await pool.body(body);
+    const { id_race } = req.query;
+    let query = `
+        SELECT
+            careful.id_careful,
+            careful.feeding,
+            careful.bathroom,
+            race.id_race,
+            race.name AS race_name,
+            activity.id_activity,
+            activity.duration_time,
+            activity.implements
+        FROM
+            careful
+        INNER JOIN race ON careful.id_race = race.id_race
+        INNER JOIN activity ON careful.id_activity = activity.id_activity
+    `;
 
-        // Formatear la respuesta para que tenga el formato deseado
+    if (id_race) {
+        query += ` WHERE race.id_race = $1`;
+    }
+
+    try {
+        const { rows } = await pool.query(query, id_race ? [id_race] : []);
+
+        // Organizar los resultados en un formato deseado
         const formattedRows = rows.map(row => {
             return {
                 id_careful: row.id_careful,
                 feeding: row.feeding,
                 bathroom: row.bathroom,
-                id_vaccine: row.vaccine.id_vaccine,
-                vaccine: row.vaccine,
-                id_activity: row.activity.id_activity,
-                activity: row.activity
+                race: {
+                    id_race: row.id_race,
+                    name: row.race_name
+                },
+                activity: {
+                    id_activity: row.id_activity,
+                    name: row.name,
+                    duration_time: row.duration_time,
+                    implements: row.implements
+                }
             };
         });
 
@@ -517,7 +518,79 @@ app.get('/cuidados', async (req, res) => {
     }
 });
 
+app.post('/vaccines', async (req, res) => {
+    const { name, description } = req.body;
+    try {
+        const result = await pool.query(
+            'INSERT INTO vaccine (name, description) VALUES ($1, $2) RETURNING *',
+            [name, description]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (error) {
+        console.error('Error al agregar la vacuna:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
 
+// READ - Obtener todas las vacunas
+app.get('/vaccines', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM vaccine');
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error('Error al obtener las vacunas:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
+// READ - Obtener una vacuna por ID
+app.get('/vaccines/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query('SELECT * FROM vaccine WHERE id_vaccine = $1', [id]);
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Vacuna no encontrada' });
+        }
+        res.status(200).json(result.rows[0]);
+    } catch (error) {
+        console.error('Error al obtener la vacuna:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
+// UPDATE - Actualizar una vacuna
+app.put('/vaccines/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, description } = req.body;
+    try {
+        const result = await pool.query(
+            'UPDATE vaccine SET name = $1, description = $2 WHERE id_vaccine = $3 RETURNING *',
+            [name, description, id]
+        );
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Vacuna no encontrada' });
+        }
+        res.status(200).json(result.rows[0]);
+    } catch (error) {
+        console.error('Error al actualizar la vacuna:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
+// DELETE - Eliminar una vacuna
+app.delete('/vaccines/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query('DELETE FROM vaccine WHERE id_vaccine = $1 RETURNING *', [id]);
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Vacuna no encontrada' });
+        }
+        res.status(200).json({ message: 'Vacuna eliminada correctamente' });
+    } catch (error) {
+        console.error('Error al eliminar la vacuna:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
 
 // Manejador de errores para rutas no encontradas
 app.use((req, res) => {

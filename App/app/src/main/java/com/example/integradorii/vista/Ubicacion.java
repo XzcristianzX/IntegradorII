@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,17 +17,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class Ubicacion extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Button btnSalir;
+    private ImageView btnSalir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
-
-        btnSalir = findViewById(R.id.btnSalir);
+        setContentView(R.layout.ubicacion);
+        btnSalir = findViewById(R.id.back_arrow);
         btnSalir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,5 +63,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // Mover la cámara al marcador y ajustar el zoom
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, 12));
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

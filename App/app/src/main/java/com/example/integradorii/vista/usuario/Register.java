@@ -1,4 +1,4 @@
-package com.example.integradorii.vista;
+package com.example.integradorii.vista.usuario;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,23 +15,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.integradorii.Api.ApiService;
 import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.estructura.User;
+import com.example.integradorii.vista.Home;
+import com.example.integradorii.vista.Login;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.Arrays;
-
-import okhttp3.ConnectionSpec;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Register extends AppCompatActivity {
 
