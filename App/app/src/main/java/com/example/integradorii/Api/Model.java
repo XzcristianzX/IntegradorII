@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Model {
-    private static final String BASE_URL = "http://192.168.0.102:3000";
+    private static final String BASE_URL = "http://10.80.82.179:3000";
 
     private ApiService apiService;
 
@@ -193,8 +193,8 @@ public class Model {
         });
     }
 
-    public void getCuidados(final CarefulCallback callback) {
-        Call<List<Careful>> call = apiService.getCuidados();
+    public void getCuidados(int idRace, final CarefulCallback callback) {
+        Call<List<Careful>> call = apiService.getCuidados(idRace);
         call.enqueue(new Callback<List<Careful>>() {
             @Override
             public void onResponse(Call<List<Careful>> call, Response<List<Careful>> response) {

@@ -12,18 +12,15 @@ public class Careful {
     @SerializedName("bathroom")
     private String bathroom;
 
-    @SerializedName("id_vaccine")
-    private int idVaccine;
+    @SerializedName("race")
+    private Race race;
 
-    @SerializedName("id_activity")
-    private int idActivity;
 
-    public Careful(int idCareful, String feeding, String bathroom, int idVaccine, int idActivity) {
+    public Careful(int idCareful, String feeding, String bathroom, Race race) {
         this.idCareful = idCareful;
         this.feeding = feeding;
         this.bathroom = bathroom;
-        this.idVaccine = idVaccine;
-        this.idActivity = idActivity;
+        this.race = race;
     }
 
     public int getIdCareful() {
@@ -50,19 +47,12 @@ public class Careful {
         this.bathroom = bathroom;
     }
 
-    public int getIdVaccine() {
-        return idVaccine;
+    public Race getRace() {
+        return race;
     }
 
-    public void setIdVaccine(int idVaccine) {
-        this.idVaccine = idVaccine;
+    public void setRace(Race race) {
+        this.race = race;
     }
 
-    public int getIdActivity() {
-        return idActivity;
-    }
-
-    public void setIdActivity(int idActivity) {
-        this.idActivity = idActivity;
-    }
 }

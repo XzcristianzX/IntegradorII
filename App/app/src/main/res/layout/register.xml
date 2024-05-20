@@ -126,7 +126,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Fecha de nacimiento"
                     android:textColor="@color/hintColor"
-                    android:textCursorDrawable="@color/hintColor" />
+                    android:textCursorDrawable="@color/hintColor"
+                    android:focusable="false"
+                    android:clickable="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -178,7 +180,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Contraseña de 4 digitos segura"
                     android:textColor="@color/hintColor"
-                    android:textCursorDrawable="@color/hintColor" />
+                    android:textCursorDrawable="@color/hintColor"
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -195,7 +198,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Confirmar contraseña"
                     android:textColor="@color/hintColor"
-                    android:textCursorDrawable="@color/hintColor" />
+                    android:textCursorDrawable="@color/hintColor"
+                    android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner

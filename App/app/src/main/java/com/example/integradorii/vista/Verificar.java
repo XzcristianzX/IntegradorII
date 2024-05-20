@@ -45,7 +45,6 @@ public class Verificar extends AppCompatActivity {
                     @Override
                     public void onSuccess(User user) {
                         // Usuario autenticado correctamente
-                        Toast.makeText(Verificar.this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Verificar.this, Home.class);
                         intent.putExtra("name",user.getName());
                         intent.putExtra("phone",user.getPhone());

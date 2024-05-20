@@ -1,5 +1,6 @@
 package com.example.integradorii.vista.usuario;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,6 +23,8 @@ import com.example.integradorii.estructura.User;
 import com.example.integradorii.vista.Home;
 import com.example.integradorii.vista.Login;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.Calendar;
 
 public class Register extends AppCompatActivity {
 
@@ -49,6 +53,8 @@ public class Register extends AppCompatActivity {
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
+
+        datein.setOnClickListener(view -> showDatePickerDialog());
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,5 +170,23 @@ public class Register extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Login.class);
         startActivity(intent);
         finish();
+    }
+    private void showDatePickerDialog() {
+        // Obtener la fecha actual
+        final Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+
+        // Crear DatePickerDialog
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                Register.this,
+                (DatePicker view, int yearSelected, int monthOfYear, int dayOfMonth) -> {
+                    // Formatear la fecha seleccionada
+                    String formattedDate = String.format("%02d/%02d/%d", dayOfMonth, monthOfYear + 1, yearSelected);
+                    datein.setText(formattedDate);
+                },
+                year, month, day);
+        datePickerDialog.show();
     }
 }

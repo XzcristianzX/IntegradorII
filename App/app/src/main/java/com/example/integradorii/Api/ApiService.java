@@ -55,8 +55,7 @@ public interface ApiService {
 
     @PUT("/post/{id}")
     Call<Post> updatePost(@Path("id") int postId, @Body Post post);
-
-    @GET("/cuidados")
-    Call<List<Careful>> getCuidados();
+    @GET("cuidados")
+    Call<List<Careful>> getCuidados(@Query("id_race") int idRace);
 }
 
