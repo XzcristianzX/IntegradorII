@@ -94,7 +94,8 @@ app.post('/login', async (req, res) => {
             res.status(401).json({ error: 'Correo electrónico o contraseña incorrectos' });
         } else {
             const user = rows[0];
-            if (!user.active) {
+            console.log('Correo electrónico:', user.status);
+            if (!user.status) {
                 // Si el usuario está temporalmente desactivado
                 res.status(401).json({ error: 'Usuario temporalmente desactivado. Para más información, comunícate al 3174178254' });
             } else {

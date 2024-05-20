@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.integradorii.R;
-import com.example.integradorii.vista.mascota.Mascota;
+import com.example.integradorii.vista.mascota.PetProfile;
 import com.example.integradorii.vista.post.PosAdopcion;
 import com.example.integradorii.vista.usuario.Usuario;
 import com.example.integradorii.vista.vacunas.Vacunas;
@@ -24,7 +24,7 @@ public class Home extends AppCompatActivity {
     private LinearLayout consejosCuidados;
     private LinearLayout carnetVacunas;
     private LinearLayout ubicaMascota;
-    private ImageView backArrow, mascota, profile;
+    private ImageView backArrow, profileUser, profilePet;
     String userName, id, name;
 
     @SuppressLint("MissingInflatedId")
@@ -38,8 +38,8 @@ public class Home extends AppCompatActivity {
         carnetVacunas = findViewById(R.id.carnet_vacunas);
         ubicaMascota = findViewById(R.id.ubica_mascota);
         backArrow = findViewById(R.id.back_arrow);
-        mascota = findViewById(R.id.mascota);
-        profile = findViewById(R.id.profile);
+        profilePet = findViewById(R.id.profile_mascota);
+        profileUser = findViewById(R.id.profile_user);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -53,21 +53,21 @@ public class Home extends AppCompatActivity {
             }
         }
 
-        mascota.setOnClickListener(new View.OnClickListener() {
+        profilePet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Home.this, Mascota.class);
+                Intent intent = new Intent(Home.this, PetProfile.class);
                 startActivity(intent);
             }
         });
 
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Home.this, Usuario.class);
-                startActivity(intent);
-            }
-        });
+//        profile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Home.this, Usuario.class);
+//                startActivity(intent);
+//            }
+//        });
 
         publicacionesAdopcion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +98,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, Ubicacion.class);
                 startActivity(intent);
+
             }
         });
 
@@ -105,6 +106,14 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showLogoutConfirmationDialog();
+            }
+        });
+
+        profileUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Home.this, UserProfile.class);
+                startActivity(intent);
             }
         });
     }

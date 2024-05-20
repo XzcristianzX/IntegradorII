@@ -21,7 +21,7 @@ public class ActulizarMascota extends AppCompatActivity {
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActulizarMascota.this, Mascota.class);
+                Intent intent = new Intent(ActulizarMascota.this, PetProfile.class);
                 startActivity(intent);
                 finish();
             }

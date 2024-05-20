@@ -6,4 +6,18 @@
         <item>Masculino</item>
         <item>Otro</item>
     </string-array>
+
+    <string-array name="races">
+        <item>Seleccionar</item>
+        <item>Perro</item>
+        <item>Gato</item>
+        <item>Ave</item>
+    </string-array>
+
+    <string-array name="type_animal">
+        <item>Seleccionar</item>
+        <item>Feminino</item>
+        <item>Masculino</item>
+        <item>Otro</item>
+    </string-array>
 </resources>

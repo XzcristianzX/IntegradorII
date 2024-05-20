@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.estructura.User;
+import com.example.integradorii.vista.usuario.Register;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Arrays;
@@ -49,7 +50,7 @@ public class Login extends AppCompatActivity {
         btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Home.class);
+                Intent intent = new Intent(getApplicationContext(), Register.class);
                 startActivity(intent);
                 finish();
             }

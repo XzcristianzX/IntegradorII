@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,78 +8,105 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <!-- Botón de atrás -->
-    <ImageView
-        android:id="@+id/back_arrow"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:src="@drawable/atras"
-        android:contentDescription="Botón de atrás"
-        android:layout_margin="16dp" />
-
-    <!-- Ícono de perfil y de mascotas -->
     <LinearLayout
-        android:id="@+id/icon_layout"
-        android:layout_width="wrap_content"
+        android:id="@+id/layout_button_back"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_margin="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/profile_icon"
+            android:id="@+id/back_arrow"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/logouser"
-            android:contentDescription="Ícono de perfil"
-            android:layout_marginBottom="8dp"/>
+            android:contentDescription="Botón de atrás"
+            android:src="@drawable/atras" />
 
-        <ImageView
-            android:id="@+id/pet_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/huella"
-            android:contentDescription="Ícono de mascotas"/>
+        <LinearLayout
+            android:id="@+id/icon_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="5dp"
+            android:gravity="right"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_button_back">
+
+            <ImageView
+                android:id="@+id/profile_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="2dp"
+                android:contentDescription="Ícono de perfil"
+                android:src="@drawable/logouser" />
+
+            <ImageView
+                android:id="@+id/pet_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="Ícono de mascotas"
+                android:src="@drawable/huella" />
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- Título -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/back_arrow"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:gravity="left"
         android:text="PUBLICACIONES"
         android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_button_back" />
 
-    <!-- Botón Crear Post -->
-    <Button
-        android:id="@+id/create_post_button"
+    <LinearLayout
+        android:id="@+id/button_register_post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_gravity="left"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         android:background="@drawable/button_background"
-        android:drawableLeft="@drawable/lapiz_drawable"
-        android:text="CREAR POST"
-        android:textColor="@android:color/white"
-    android:textSize="16sp"
-    android:padding="16dp"/>
+        android:layout_marginTop="20dp">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/edit_pen"
+            android:background="@color/buttonColor"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:id="@+id/btn_login"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:text="Crear Publicación"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:gravity="center_vertical">
+        </TextView>
+
+    </LinearLayout>
 
     <!-- RecyclerView para los posts -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/create_post_button"
-        android:layout_marginTop="16dp"/>
+        android:layout_height="500dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_register_post" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

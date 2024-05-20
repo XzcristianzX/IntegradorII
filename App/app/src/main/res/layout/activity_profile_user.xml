@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vista.UserProfile"
+    android:background="@color/backgorund">
+
+    <LinearLayout
+        android:id="@+id/layout_button_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_arrow_userprofile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="Botón de atrás"
+            android:src="@drawable/atras" />
+
+        <LinearLayout
+            android:id="@+id/icon_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="5dp"
+            android:gravity="right"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_button_back">
+
+            <ImageView
+                android:id="@+id/pet_profile_userprofile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="Ícono de mascotas"
+                android:src="@drawable/huella" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="TÚ PERFIL"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_button_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/editTextUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/edit_text_style"
+            android:gravity="center_vertical"
+            android:hint="USUARIO:"
+            android:padding="10dp"
+            android:textColor="#005b89"
+            android:textColorHint="#005b89"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_button_back"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/editTextCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/edit_text_style"
+            android:gravity="center_vertical"
+            android:hint="CORREO:"
+            android:padding="10dp"
+            android:textColor="#005b89"
+            android:textColorHint="#005b89"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_button_back"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/editTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/edit_text_style"
+            android:gravity="center_vertical"
+            android:hint="TELÉFONO:"
+            android:padding="10dp"
+            android:textColor="#005b89"
+            android:textColorHint="#005b89"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_button_back"
+            android:layout_marginTop="20dp"/>
+
+        <Spinner
+            android:id="@+id/genero"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:background="@color/white"
+            android:entries="@array/gender"
+            android:theme="@style/SpinnerTextStyle" />
+
+        <Button
+            android:id="@+id/btn_register"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="190dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="70dp"
+            android:backgroundTint="@color/buttonColor"
+            android:text="Modificar datos"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

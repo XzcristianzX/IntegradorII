@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Model {
-    private static final String BASE_URL = "http://192.168.1.7:3000";
+    private static final String BASE_URL = "http://192.168.0.102:3000";
 
     private ApiService apiService;
 
@@ -77,7 +77,7 @@ public class Model {
     }
     public void registerUser(String username, String name, String birthdate, String email, String password, String phone, String gender, final UserCallback callback) {
         boolean active= true;
-        User Usernew = new User(username,  name,  birthdate,  email,  password,  phone,  gender,active);
+        User Usernew = new User(username,  name,  birthdate,  email,  password,  phone,  gender, true);
         Call<User> call = apiService.register(Usernew);
         call.enqueue(new Callback<User>() {
             @Override
