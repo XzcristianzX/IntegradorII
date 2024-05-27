@@ -467,7 +467,7 @@ app.put('/post/:id', upload.single('img'), async (req, res) => {
 });
 
 
-// CONEJOS
+// CUIDADOS
 app.get('/cuidados', async (req, res) => {
     const { id_race } = req.query;
     let query = `
@@ -482,7 +482,7 @@ app.get('/cuidados', async (req, res) => {
             activity.implements
         FROM
             careful
-        INNER JOIN race ON careful.id_race = race.id_race
+        INNER JOIN race ON race.id_careful = careful.id_careful
         INNER JOIN activity ON careful.id_activity = activity.id_activity
     `;
 

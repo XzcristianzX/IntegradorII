@@ -15,14 +15,18 @@ public class Careful {
     @SerializedName("race")
     private Race race;
 
+    @SerializedName("activity")
+    private Actividad activity;
 
-    public Careful(int idCareful, String feeding, String bathroom, Race race) {
+    public Careful(int idCareful, String feeding, String bathroom, Race race, Actividad activity) {
         this.idCareful = idCareful;
         this.feeding = feeding;
         this.bathroom = bathroom;
         this.race = race;
+        this.activity = activity;
     }
 
+    // Getters y setters
     public int getIdCareful() {
         return idCareful;
     }
@@ -55,4 +59,11 @@ public class Careful {
         this.race = race;
     }
 
+    public Actividad getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Actividad activity) {
+        this.activity = activity;
+    }
 }

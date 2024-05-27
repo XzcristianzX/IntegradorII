@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -45,9 +46,6 @@
             android:name=".vista.usuario.ActulizarUsuario"
             android:exported="true" />
         <activity
-            android:name=".vista.Consejos"
-            android:exported="true" />
-        <activity
             android:name=".vista.Home"
             android:exported="true" />
         <activity
@@ -72,9 +70,6 @@
             android:name=".vista.usuario.Usuario"
             android:exported="true" />
         <activity
-            android:name=".vista.mascota.Mascota"
-            android:exported="true" />
-        <activity
             android:name=".vista.mascota.ActulizarMascota"
             android:exported="true" />
         <activity
@@ -84,9 +79,6 @@
             android:name=".vista.mascota.InfoMascota"
             android:exported="true" />
         <activity
-            android:name=".vista.mascota.RegistroMascota"
-            android:exported="true" />
-        <activity
             android:name=".vista.post.RegistrarPost"
             android:exported="true" />
         <activity
@@ -94,6 +86,13 @@
             android:exported="true" />
         <activity
             android:name=".vista.vacunas.RegistroVacuna"
+            android:exported="true" />
+        <activity
+            android:name=".vista.cuidados.Consejos"
+            android:exported="true"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".vista.cuidados.MostrarConsejos"
             android:exported="true" />
     </application>
 

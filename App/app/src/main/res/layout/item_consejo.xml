@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/backgorund"
+    android:padding="8dp">
+    <TextView
+        android:id="@+id/race_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/white"
+
+        android:text="Race Name" />
+    <TextView
+        android:id="@+id/feeding"
+        style="@style/Widget.AppCompat.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Feeding" />
+
+    <TextView
+        android:id="@+id/bathroom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bathroom" />
+
+
+    <TextView
+        android:id="@+id/activity_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activity Name" />
+
+    <TextView
+        android:id="@+id/duration_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Duration Time" />
+
+    <TextView
+        android:id="@+id/implementss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Implements" />
+
+</LinearLayout>

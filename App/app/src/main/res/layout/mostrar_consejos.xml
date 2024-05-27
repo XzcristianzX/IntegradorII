@@ -67,46 +67,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:orientation="vertical"
-        android:gravity="center">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <Spinner
-            android:id="@+id/spinner_animal_type"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@color/light_blue"
-            android:entries="@array/type_animal"
-            android:theme="@style/SpinnerTextStyle" />
-
-        <Spinner
-            android:id="@+id/spinner_animal_breed"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="15dp"
-            android:background="@color/light_blue"
-            android:entries="@array/races"
-            android:theme="@style/SpinnerTextStyle" />
-
-        <Button
-            android:id="@+id/btn_consulta"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="190dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="70dp"
-            android:backgroundTint="@color/buttonColor"
-            android:text="Consultar"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            tools:ignore="TextSizeCheck" />
-
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
