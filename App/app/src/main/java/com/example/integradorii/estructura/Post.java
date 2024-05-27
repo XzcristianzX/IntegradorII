@@ -2,6 +2,8 @@ package com.example.integradorii.estructura;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.File;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Post {
@@ -26,8 +28,10 @@ public class Post {
     @SerializedName("img")
     private String img;
 
-    public Post(int idPost, String title, String body, int idUser, String status, Date createdAt, String img) {
-        this.idPost = idPost;
+    @SerializedName("user_name")
+    private String userName;
+
+    public Post( String title, String body, int idUser, String status, Date createdAt, String img) {
         this.title = title;
         this.body = body;
         this.idUser = idUser;
@@ -90,5 +94,13 @@ public class Post {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

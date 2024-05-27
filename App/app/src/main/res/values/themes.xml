@@ -20,4 +20,9 @@
         <item name="android:textColor">@color/hintColor</item>
     </style>
 
+    <style name="button_style" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="backgroundTint">@color/buttonColor</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
 </resources>

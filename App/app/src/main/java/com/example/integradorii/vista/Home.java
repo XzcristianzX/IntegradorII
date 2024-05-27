@@ -37,7 +37,7 @@ public class Home extends AppCompatActivity {
         consejosCuidados = findViewById(R.id.consejos_cuidados);
         carnetVacunas = findViewById(R.id.carnet_vacunas);
         ubicaMascota = findViewById(R.id.ubica_mascota);
-        backArrow = findViewById(R.id.back_arrow);
+        backArrow = findViewById(R.id.back_toolbar);
         profilePet = findViewById(R.id.profile_mascota);
         profileUser = findViewById(R.id.profile_user);
 

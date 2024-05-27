@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp">
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_post_style"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/user_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="USUARIO"
+                android:textColor="@color/titleColorText"
+                android:layout_marginRight="170dp"/>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/yellow"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/status_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="status"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TITULO"
+                android:textColor="@color/titleColorText"/>
+
+            <TextView
+                android:id="@+id/des_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DECRIPCION"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"/>
+
+            <ImageView
+                android:id="@+id/pet_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/huella"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

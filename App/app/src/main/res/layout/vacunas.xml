@@ -68,7 +68,7 @@
 
     <!-- RecyclerView para los posts -->
     <LinearLayout
-        android:id="@+id/button_register_post"
+        android:id="@+id/anadir_vacuna"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"

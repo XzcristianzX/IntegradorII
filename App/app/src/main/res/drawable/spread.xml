@@ -1,0 +1,26 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <scale
+            android:scaleWidth="1.2"
+            android:scaleHeight="1.2"
+            android:drawable="@drawable/huella"
+            android:alpha="0.3"
+            android:pivotX="50%"
+            android:pivotY="50%" />
+    </item>
+    <item>
+        <scale
+            android:scaleWidth="1.1"
+            android:scaleHeight="1.1"
+            android:drawable="@drawable/huella"
+            android:alpha="0.5"
+            android:pivotX="50%"
+            android:pivotY="50%" />
+    </item>
+    <item>
+        <scale
+            android:scaleWidth="1.0"
+            android:scaleHeight="1.0"
+            android:drawable="@drawable/huella" />
+    </item>
+</layer-list>

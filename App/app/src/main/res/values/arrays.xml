@@ -20,4 +20,11 @@
         <item>Masculino</item>
         <item>Otro</item>
     </string-array>
+
+    <string-array name="status_post">
+        <item>Seleccionar</item>
+        <item>En Adopción</item>
+        <item>Jornada vacunación</item>
+        <item>Jornada estelizacación</item>
+    </string-array>
 </resources>
