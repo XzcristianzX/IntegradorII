@@ -166,6 +166,26 @@
                     android:textCursorDrawable="@color/hintColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTheme.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Genero"
+                    android:textColor="@color/hintColor"
+                    android:textCursorDrawable="@color/hintColor"
+                    android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/AppTheme.TextInputLayout"
                 android:layout_width="match_parent"
@@ -202,16 +222,6 @@
                     android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Spinner
-                android:id="@+id/genero"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:entries="@array/gender"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/backgorund"
-                android:theme="@style/SpinnerTextStyle"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"

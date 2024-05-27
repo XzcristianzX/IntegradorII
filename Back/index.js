@@ -17,6 +17,9 @@ const server = http.createServer(app);
 // Crear instancia de Socket.IO y pasarle el servidor HTTP
 const io = socketIo(server);
 
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
 // Configuración de la base de datos
 const pool = new Pool({
     user: 'postgres',
@@ -383,7 +386,7 @@ app.put('/animal/:id', upload.single('img'), async (req, res) => {
 // TODOS LOS POST
 app.get('/post', async (req, res) => {
     try {
-        const { rows } = await pool.body('SELECT * FROM "adoption_post"');
+        const { rows } = await pool.query('SELECT ap.id_adoption_post, ap.title, ap.body, ap.title, ap.id_user, ap.status, ap.img, u.user_name  FROM "adoption_post" ap inner join "user" u on ap.id_user = u.id_user');
         res.json(rows);
     } catch (error) {
         console.error('Error al obtener usuarios:', error);
@@ -393,15 +396,16 @@ app.get('/post', async (req, res) => {
 
 
 //CREAR UN POST
-app.post('/post', upload.single('img'), async (req, res) => {
-    const { title, body, id_user, status, created_at} = req.body;
-    const filename = req.file ? req.file.filename : null;
-    const img_url = filename ? `http://localhost:3000/images/${filename}` : null;
+app.post('/post', async (req, res) => {
+    const { title, body, id_user, status, created_at, img} = req.body;
+    //const filename = req.file ? req.file.filename : null;
+    //const img_url = filename ? `http://localhost:3000/images/${filename}` : null;
+    console.log(status);
 
     try {
-        const { rows } = await pool.body(
+        const { rows } = await pool.query(
             'INSERT INTO "adoption_post" (title, body, id_user, status,created_at, img) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-            [title, body, id_user, status,created_at, img_url]
+            [title, body, id_user, status, created_at, img]
         );
         const newPost = rows[0];
         io.emit('newPost', newPost); // Emitir un evento a todos los clientes conectados sobre el nuevo post

@@ -80,7 +80,8 @@
             android:exported="true" />
         <activity
             android:name=".vista.post.RegistrarPost"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".vista.vacunas.ActuactualizarVacuna"
             android:exported="true" />

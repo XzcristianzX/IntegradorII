@@ -31,9 +31,10 @@ public class Register extends AppCompatActivity {
     ImageButton back;
     Button btnRegister;
     TextView backLogin;
-    TextInputEditText namein, userin, emailin, passin, phonein, datein;
+    TextInputEditText namein, userin, emailin, passin, phonein, datein, genderin;
     Spinner spinnerGender;
     Model model = new Model();
+    String selectedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class Register extends AppCompatActivity {
         phonein = findViewById(R.id.phonein);
         datein = findViewById(R.id.datein);
         btnRegister = findViewById(R.id.btn_register);
-        spinnerGender = findViewById(R.id.genero);
+        genderin = findViewById(R.id.gender);
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
@@ -79,7 +80,7 @@ public class Register extends AppCompatActivity {
             String pin = passin.getText().toString();
             String pin2 = passin.getText().toString();
             String tel = phonein.getText().toString();
-            String genero = validarGenero();
+            String genero = genderin.getText().toString();
 
             if (genero.isEmpty() && tel.isEmpty() && correo.isEmpty() && nombre.isEmpty() && pin.isEmpty() && pin2.isEmpty() && pin.equals(pin2)) {
                 Toast.makeText(this, "ingrese todos los datos", Toast.LENGTH_SHORT).show();
@@ -147,25 +148,25 @@ public class Register extends AppCompatActivity {
         return false;
     }
 
-    public String validarGenero() {
-        final String[] selectedItem = {""};
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.gender, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerGender.setAdapter(adapter);
-        spinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                selectedItem[0] = parentView.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                selectedItem[0] = "";
-            }
-        });
-        return selectedItem[0];
-    }
+//    public String validarGenero() {
+//        selectedItem = "";
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.gender, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerGender.setAdapter(adapter);
+//        spinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+//                selectedItem = parentView.getItemAtPosition(position).toString();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parentView) {
+//                selectedItem = "";
+//            }
+//        });
+//        return selectedItem;
+//    }
     public void intentLogin() {
         Intent intent = new Intent(getApplicationContext(), Login.class);
         startActivity(intent);
