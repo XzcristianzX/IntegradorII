@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.integradorii.R;
+import com.example.integradorii.vista.cuidados.Consejos;
 import com.example.integradorii.vista.mascota.PetProfile;
 import com.example.integradorii.vista.post.PosAdopcion;
 import com.example.integradorii.vista.usuario.Usuario;

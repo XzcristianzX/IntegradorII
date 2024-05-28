@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.integradorii.Adaptadores.AdaptadorPost;
 import com.example.integradorii.Api.ApiService;
+import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.estructura.Post;
 import com.example.integradorii.vista.Home;

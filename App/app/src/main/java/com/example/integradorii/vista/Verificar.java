@@ -2,9 +2,9 @@ package com.example.integradorii.vista;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +19,7 @@ public class Verificar extends AppCompatActivity {
     Button vericationButton;
     TextInputEditText verificationCode;
 
-    String email;
+    String mail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,32 +33,31 @@ public class Verificar extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             if (extras.containsKey("mail")) {
-                email = extras.getString("mail");
+                mail = extras.getString("mail");
             }
+            Log.e("olaaa4", mail);
         }
 
         vericationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String code = verificationCode.getText().toString().trim();
-                model.verificarUser(email,code, new Model.UserCallback() {
+                model.verificarUser(mail,code, new Model.UserCallback() {
                     @Override
                     public void onSuccess(User user) {
-                        // Usuario autenticado correctamente
                         Intent intent = new Intent(Verificar.this, Home.class);
                         intent.putExtra("name",user.getName());
                         intent.putExtra("phone",user.getPhone());
-                        intent.putExtra("user_name",user.getUsername());
-                        intent.putExtra("mail",user.getEmail());
+                        intent.putExtra("user_name",user.getUser_name());
+                        intent.putExtra("mail",user.getMail());
 
-                        //aqui pasar los demas datos
+                        Model.saveShared(getApplication(), "userId", String.valueOf(user.getUserId()));
                         startActivity(intent);
                         finish();
                     }
 
                     @Override
                     public void onFailure() {
-                        // Error de autenticación
                         Toast.makeText(Verificar.this, "Error: Credenciales incorrectas", Toast.LENGTH_SHORT).show();
                     }
                 });

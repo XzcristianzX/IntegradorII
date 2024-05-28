@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
-import com.example.integradorii.adaptadores.ConsejoAdapter;
+import com.example.integradorii.Adaptadores.ConsejoAdapter;
 import com.example.integradorii.estructura.Careful;
 
 import java.util.ArrayList;

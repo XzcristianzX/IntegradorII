@@ -1,5 +1,11 @@
 package com.example.integradorii.Api;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+
 import com.example.integradorii.estructura.Animal;
 import com.example.integradorii.estructura.Careful;
 import com.example.integradorii.estructura.Post;
@@ -28,7 +34,7 @@ public class Model {
 
 
 
-    public void loginUser(String email, String password, final UserCallback callback) {
+    public void loginUser(Context context, String email, String password, final UserCallback callback) {
         User Usernew = new User(email,"",password);
 
         Call<User> call = apiService.loginUser(Usernew);
@@ -40,9 +46,10 @@ public class Model {
                     if (user != null) {
                         String name = user.getName();
                         String phone = user.getPhone();
-                        String username = user.getUsername();
-                        String email = user.getEmail();
+                        String username = user.getUser_name();
+                        String email = user.getMail();
                     }
+                    Log.e("ola", getShared(context, "idUser"));
                     callback.onSuccess(user);
                 } else {
                     callback.onFailure();
@@ -55,8 +62,9 @@ public class Model {
             }
         });
     }
-    public void verificarUser(String email,String code, final UserCallback callback){
-        User Usernew = new User(email,code,"");
+    public void verificarUser(String mail,String code, final UserCallback callback){
+        User Usernew = new User(mail,code,"");
+
         Call<User> call= apiService.verificar(Usernew);
 
         call.enqueue(new Callback<User>() {
@@ -75,6 +83,28 @@ public class Model {
             }
         });
     }
+
+    public void getMyUser(Context context, final UserCallback callback) {
+        String iduser = Model.getShared(context, "userId");
+        Call<User> call= apiService.getUserById(iduser);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
     public void registerUser(String username, String name, String birthdate, String email, String password, String phone, String gender, final UserCallback callback) {
         boolean active= true;
         User Usernew = new User(username,  name,  birthdate,  email,  password,  phone,  gender, true);
@@ -91,7 +121,6 @@ public class Model {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                // Error en la solicitud
                 callback.onFailure();
             }
         });
@@ -212,27 +241,38 @@ public class Model {
         });
     }
 
+
+
     public interface UserCallback {
         void onSuccess(User user);
         void onFailure();
     }
 
-    // Interfaz de callback para manejar el resultado de las operaciones con Animal
     public interface AnimalCallback {
         void onSuccess(Animal animal);
         void onFailure();
     }
 
-    // Interfaz de callback para manejar el resultado de las operaciones con Post
     public interface PostCallback {
         void onSuccess(Post post);
         void onFailure();
     }
 
-    // Interfaz de callback para manejar el resultado de las operaciones con Careful
     public interface CarefulCallback {
         void onSuccess(List<Careful> carefulList);
         void onFailure();
+    }
+
+    public static String getShared(Context activity, String key) {
+        SharedPreferences preferences = activity.getSharedPreferences("animal", MODE_PRIVATE);
+        return preferences.getString(key, "");
+    }
+
+    public static void saveShared(Context activity, String key, String value) {
+        SharedPreferences preferences = activity.getSharedPreferences("animal", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(key, value);
+        editor.apply();
     }
 
 }

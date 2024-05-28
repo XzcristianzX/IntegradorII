@@ -140,7 +140,8 @@ public class RegistrarPost extends AppCompatActivity {
 
         Model model = new Model();
         Date fechaActual = new Date();
-        Post post = new Post(getTile, getDes, 1, getstatus, fechaActual, img);
+        int iduser = Integer.parseInt(Model.getShared(getApplicationContext(), "userId"));
+        Post post = new Post(getTile, getDes, iduser, getstatus, fechaActual, img);
 
         model.createPost(post, new Model.PostCallback() {
             @Override
