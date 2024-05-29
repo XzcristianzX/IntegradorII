@@ -9,10 +9,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
-import com.example.integradorii.Adaptadores.ConsejoAdapter;
+import com.example.integradorii.Adaptadores.ConsejosAdapter;
 import com.example.integradorii.estructura.Careful;
 import com.example.integradorii.vista.Home;
 import com.example.integradorii.vista.UserProfile;
@@ -23,7 +22,7 @@ import java.util.List;
 
 public class MostrarConsejos extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private ConsejoAdapter adapter;
+    private ConsejosAdapter adapter;
     private List<Careful> consejos;
     private int breedId;
     private Model model;
@@ -44,7 +43,7 @@ public class MostrarConsejos extends AppCompatActivity {
 
         // Initialize the list and adapter
         consejos = new ArrayList<>();
-        adapter = new ConsejoAdapter(consejos);
+        adapter = new ConsejosAdapter(consejos);
         recyclerView.setAdapter(adapter);
 
         // Initialize ApiService

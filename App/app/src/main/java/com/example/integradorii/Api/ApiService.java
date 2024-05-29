@@ -44,8 +44,8 @@ public interface ApiService {
     @PUT("/users/{id}")
     Call<User> updateUser(@Path("id") int userId, @Body User user);
 
-    @GET("/animal")
-    Call<List<Animal>> getAnimals();
+    @GET("/animal/{id}")
+    Call<List<Animal>> getAnimals(@Path("id") int animalId);
 
     @POST("/animal")
     Call<Animal> registerAnimal(@Body Animal animal);

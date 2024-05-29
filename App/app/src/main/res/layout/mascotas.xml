@@ -10,11 +10,10 @@
         android:id="@+id/back_arrow"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:src="@drawable/atras"
+        android:layout_margin="16dp"
         android:contentDescription="Botón de atrás"
-        android:layout_margin="16dp" />
+        android:src="@drawable/atras" />
 
     <!-- Ícono de perfil y tarjeta -->
     <LinearLayout
