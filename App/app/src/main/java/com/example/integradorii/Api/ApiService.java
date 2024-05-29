@@ -7,8 +7,10 @@ import com.example.integradorii.estructura.User;
 
 import java.util.List;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -27,6 +29,10 @@ public interface ApiService {
     @POST("/user")
     Call<User> register(@Body User user);
 
+    //<--get user-->
+    @GET("/userid/{id}")
+    Call<User> getUserById(@Path("id") String idUser);
+
     //<--verificar-->
     @POST("verify")
     Call<User> verificar(@Body User user);
@@ -38,8 +44,8 @@ public interface ApiService {
     @PUT("/users/{id}")
     Call<User> updateUser(@Path("id") int userId, @Body User user);
 
-    @GET("/animal")
-    Call<List<Animal>> getAnimals();
+    @GET("/animal/{id}")
+    Call<List<Animal>> getAnimals(@Path("id") int animalId);
 
     @POST("/animal")
     Call<Animal> registerAnimal(@Body Animal animal);

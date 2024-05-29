@@ -41,12 +41,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Función para enviar correo electrónico con el código de seguridad
-async function sendSecurityCode(email, code) {
+async function sendSecurityCode(mail, code) {
     try {
         // Configurar el objeto de opciones del correo electrónico
         const mailOptions = {
             from: 'cristiaykarol1986@gmail.com',
-            to: email, // Usar la dirección de correo electrónico proporcionada como argumento
+            to: mail, // Usar la dirección de correo electrónico proporcionada como argumento
             subject: 'Código de seguridad para iniciar sesión',
             text: `Tu código de seguridad es: ${code}`
         };
@@ -62,7 +62,7 @@ async function sendSecurityCode(email, code) {
 
         // Actualizar la base de datos con el código de seguridad
         const body = 'UPDATE "user" SET codigo_login = $1 WHERE mail = $2';
-        const { rows } = await pool.query(body, [code, email]);
+        const { rows } = await pool.query(body, [code, mail]);
 
 
         console.log('Código de seguridad guardado en la base de datos.');
@@ -84,13 +84,13 @@ function generateSecurityCode() {
 
 // INICIO DE SESION
 app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    console.log('Correo electrónico:', email);
+    const { mail, password } = req.body;
+    console.log('Correo electrónico:', mail);
 
     try {
         // Consulta SQL para verificar si el correo electrónico y la contraseña coinciden en la base de datos
         const body = 'SELECT * FROM "user" WHERE mail = $1 AND password = $2';
-        const { rows } = await pool.query(body, [email, password]);
+        const { rows } = await pool.query(body, [mail, password]);
 
         if (rows.length === 0) {
             // Si no se encuentra ningún usuario con el correo electrónico y contraseña proporcionados
@@ -105,7 +105,7 @@ app.post('/login', async (req, res) => {
                 // Generar y enviar el código de seguridad
                 const securityCode = generateSecurityCode();
                 const code = securityCode;
-                await sendSecurityCode(email, code);
+                await sendSecurityCode(mail, code);
                  res.status(200).json({ message: code });
 
                 // Si se encuentra un usuario con el correo electrónico y contraseña proporcionados
@@ -119,31 +119,29 @@ app.post('/login', async (req, res) => {
 
 // VERIFICAR CÓDIGOS
 app.post('/verify', async (req, res) => {
-    const { email, code } = req.body;
-    console.log('Correo electrónico:', email);
+    const { mail, code } = req.body;
+    console.log('Correo electrónico:', mail);
     try {
-        console.log(code)
-        console.log(email)
+        console.log(code);
+        console.log(mail);
+
         // Consultar la base de datos para verificar si el código es correcto
-        const query = 'SELECT * FROM "user" WHERE mail = $1 AND codigo_login = $2';
-        const { rows } = await pool.query(query, [email, code]);
+        const query = 'SELECT id_user FROM "user" WHERE mail = $1 AND codigo_login = $2';
+        const { rows } = await pool.query(query, [mail, code]);
 
-        // Verificar si se encontró un usuario con el correo electrónico y código de seguridad proporcionados
-        const user = rows[0];
-
-        if (user) {
-            // Si se encontró un usuario con el correo electrónico y código de seguridad proporcionados, devolver los detalles del usuario
-            res.status(200).json({ message: 'Código de seguridad correcto. Acceso permitido.', user: user });
+        if (rows.length > 0) {
+            // Si se encuentra el usuario, devolver su ID
+            const userId = rows[0].id_user;
+            res.status(200).json({ userId });
         } else {
-            // Si el código es incorrecto o el usuario no existe, denegar el acceso
-            res.status(401).json({ error: 'Código de seguridad incorrecto o usuario no encontrado. Acceso denegado.' });
+            // Si no se encuentra el usuario, devolver un error
+            res.status(400).json({ message: 'Código o correo electrónico incorrecto' });
         }
     } catch (error) {
-        console.error('Error al verificar el código de seguridad en la base de datos:', error);
-        res.status(500).json({ error: 'Error interno del servidor' });
+        console.error('Error al verificar el código en la base de datos:', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
     }
 });
-
 
 // Configurar Express para servir archivos estáticos desde el directorio 'images'
 app.use('/images', express.static(path.join(__dirname, 'images')));
@@ -164,6 +162,24 @@ app.get('/user', async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor'});
     }
 });
+
+//USER BY ID
+    app.get('/userid/:id', async (req, res) => {
+        const userId = req.params.id;
+    
+        try {
+            const { rows } = await pool.query('SELECT * FROM "user" WHERE id_user = $1', [userId]);
+    
+            if (rows.length > 0) {
+                res.json(rows[0]);
+            } else {
+                res.status(404).json({ error: 'Usuario no encontrado' });
+            }
+        } catch (error) {
+            console.error('Error al obtener el usuario:', error);
+            res.status(500).json({ error: 'Error interno del servidor' });
+        }
+    });
 
 //REGISTRO DE USUARIOS
 app.post('/user', async (req, res) => {

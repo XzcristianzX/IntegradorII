@@ -12,8 +12,6 @@
         android:id="@+id/layout_button_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,8 +27,6 @@
             android:id="@+id/icon_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
             android:layout_margin="5dp"
             android:gravity="right"
             android:orientation="vertical"
@@ -48,11 +44,10 @@
                 android:id="@+id/carnet_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:contentDescription="Ícono de mascotas"
+                android:contentDescription="Ícono de carnet"
                 android:src="@drawable/carnet"
                 android:layout_marginTop="3dp"/>
         </LinearLayout>
-
 
     </LinearLayout>
 
@@ -103,7 +98,7 @@
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/userin"
+                    android:id="@+id/etType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Tipo"
@@ -121,7 +116,7 @@
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/namein"
+                    android:id="@+id/etRace"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Raza"
@@ -138,7 +133,7 @@
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/datein"
+                    android:id="@+id/etName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nombre"
@@ -156,7 +151,7 @@
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/emailin"
+                    android:id="@+id/etWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Peso"
@@ -173,24 +168,47 @@
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/phonein"
+                    android:id="@+id/etSize"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Sexo"
+                    android:hint="Tamaño"
                     android:textColor="@color/hintColor"
                     android:textCursorDrawable="@color/hintColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Spinner
-                android:id="@+id/genero"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTheme.TextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/backgorund"
-                android:entries="@array/gender"
-                android:theme="@style/SpinnerTextStyle" />
+                android:layout_marginRight="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Género"
+                    android:textColor="@color/hintColor"
+                    android:textCursorDrawable="@color/hintColor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTheme.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBirthdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Fecha de Nacimiento"
+                    android:textColor="@color/hintColor"
+                    android:textCursorDrawable="@color/hintColor" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -199,7 +217,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btn_register"
+                    android:id="@+id/btnRegisterPet"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="200dp"
                     android:layout_height="55dp"

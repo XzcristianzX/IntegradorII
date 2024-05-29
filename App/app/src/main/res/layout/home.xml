@@ -27,7 +27,7 @@
             android:id="@+id/publicaciones_adopcion"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/rounded_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -52,7 +52,7 @@
             android:id="@+id/consejos_cuidados"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/rounded_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -77,7 +77,7 @@
             android:id="@+id/carnet_vacunas"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/rounded_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -98,30 +98,30 @@
                 android:textSize="20dp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ubica_mascota"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/rounded_background"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/ubica_mascota"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:background="@drawable/rounded_background"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:padding="16dp">-->
 
-            <ImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:src="@drawable/ubicacion" />
+<!--            <ImageView-->
+<!--                android:layout_width="55dp"-->
+<!--                android:layout_height="55dp"-->
+<!--                android:src="@drawable/ubicacion" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:text="Ubica tu Mascota"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-        </LinearLayout>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:text="Ubica tu Mascota"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="20dp" />-->
+<!--        </LinearLayout>-->
 
     </LinearLayout>
 

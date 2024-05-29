@@ -1,4 +1,4 @@
-package com.example.integradorii.adaptadores;
+package com.example.integradorii.Adaptadores;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +12,10 @@ import com.example.integradorii.estructura.Careful;
 
 import java.util.List;
 
-public class ConsejoAdapter extends RecyclerView.Adapter<ConsejoAdapter.ConsejoViewHolder> {
+public class ConsejosAdapter extends RecyclerView.Adapter<ConsejosAdapter.ConsejoViewHolder> {
     private List<Careful> consejos;
 
-    public ConsejoAdapter(List<Careful> consejos) {
+    public ConsejosAdapter(List<Careful> consejos) {
         this.consejos = consejos;
     }
 

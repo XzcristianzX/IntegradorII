@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".vista.UserProfile"
-    android:background="@color/backgorund">
+    android:background="@drawable/fondo_post">
 
     <LinearLayout
         android:id="@+id/layout_button_back"
@@ -16,14 +16,16 @@
         android:layout_alignParentTop="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:layout_margin="10dp">
 
         <ImageView
             android:id="@+id/back_arrow_userprofile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:contentDescription="Botón de atrás"
-            android:src="@drawable/atras" />
+            android:src="@drawable/back_arrow" />
 
         <LinearLayout
             android:id="@+id/icon_layout"
@@ -39,8 +41,8 @@
 
             <ImageView
                 android:id="@+id/pet_profile_userprofile"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:contentDescription="Ícono de mascotas"
                 android:src="@drawable/huella" />
         </LinearLayout>
@@ -56,7 +58,8 @@
         android:textSize="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_button_back" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_button_back"
+        android:gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -114,14 +117,21 @@
             app:layout_constraintTop_toBottomOf="@+id/layout_button_back"
             android:layout_marginTop="20dp"/>
 
-        <Spinner
-            android:id="@+id/genero"
+        <EditText
+            android:id="@+id/editGenero"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:background="@color/white"
-            android:entries="@array/gender"
-            android:theme="@style/SpinnerTextStyle" />
+            android:background="@drawable/edit_text_style"
+            android:gravity="center_vertical"
+            android:hint="GENERO:"
+            android:padding="10dp"
+            android:textColor="#005b89"
+            android:textColorHint="#005b89"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_button_back"
+            android:layout_marginTop="20dp"/>
 
         <Button
             android:id="@+id/btn_register"
@@ -133,6 +143,22 @@
             android:text="Modificar datos"
             android:textColor="@color/white"
             android:textSize="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/footer_bar"
+        android:layout_width="410dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/lines_footerbar" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
