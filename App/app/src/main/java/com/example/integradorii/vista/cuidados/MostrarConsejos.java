@@ -2,6 +2,8 @@ package com.example.integradorii.vista.cuidados;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,9 @@ import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.Adaptadores.ConsejoAdapter;
 import com.example.integradorii.estructura.Careful;
+import com.example.integradorii.vista.Home;
+import com.example.integradorii.vista.UserProfile;
+import com.example.integradorii.vista.mascota.PetProfile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +27,16 @@ public class MostrarConsejos extends AppCompatActivity {
     private List<Careful> consejos;
     private int breedId;
     private Model model;
+    private ImageView backArrow, profileUser, profilePet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mostrar_consejos);
+
+        backArrow = findViewById(R.id.back_toolbar);
+        profilePet = findViewById(R.id.profile_mascota);
+        profileUser = findViewById(R.id.profile_user);
 
         // Initialize the RecyclerView
         recyclerView = findViewById(R.id.recyclerView);
@@ -51,6 +61,29 @@ public class MostrarConsejos extends AppCompatActivity {
 
         // Fetch the data
         fetchConsejos(breedId);
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        profilePet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MostrarConsejos.this, PetProfile.class);
+                startActivity(intent);
+            }
+        });
+
+        profileUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MostrarConsejos.this, UserProfile.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void fetchConsejos(int breedId) {

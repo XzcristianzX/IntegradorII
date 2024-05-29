@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,6 +30,9 @@ import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.estructura.Post;
 import com.example.integradorii.vista.Home;
+import com.example.integradorii.vista.UserProfile;
+import com.example.integradorii.vista.mascota.PetProfile;
+import com.example.integradorii.vista.usuario.Usuario;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.ByteArrayOutputStream;
@@ -49,6 +53,8 @@ public class RegistrarPost extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int STORAGE_PERMISSION_CODE = 2;
     Bitmap imgInBitmap;
+    ImageButton profileUser, profilePet;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +66,8 @@ public class RegistrarPost extends AppCompatActivity {
         des = findViewById(R.id.descripcion);
         status = findViewById(R.id.statuspost);
         buttonPost = findViewById(R.id.btnEnviarPublicacion);
+        profileUser = findViewById(R.id.profile_user);
+        profilePet = findViewById(R.id.profile_mascota);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +105,22 @@ public class RegistrarPost extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Inserte una imagen por favor", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        profilePet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegistrarPost.this, PetProfile.class);
+                startActivity(intent);
+            }
+        });
+
+        profileUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegistrarPost.this, UserProfile.class);
+                startActivity(intent);
             }
         });
     }

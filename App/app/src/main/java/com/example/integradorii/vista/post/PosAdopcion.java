@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -19,6 +20,9 @@ import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.estructura.Post;
 import com.example.integradorii.vista.Home;
+import com.example.integradorii.vista.UserProfile;
+import com.example.integradorii.vista.mascota.PetProfile;
+import com.example.integradorii.vista.usuario.Usuario;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +44,7 @@ public class PosAdopcion extends AppCompatActivity {
     private List<Post> posts;
     AdaptadorPost adaptadorPost;
     RecyclerView recyclerView;
+    ImageButton profileUser, profilePet;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,8 @@ public class PosAdopcion extends AppCompatActivity {
         backArrow = findViewById(R.id.back_toolbar);
         crearPostButton = findViewById(R.id.btnCrearPublicacion);
         recyclerView = findViewById(R.id.recycler_view_post);
+        profileUser = findViewById(R.id.profile_user);
+        profilePet = findViewById(R.id.profile_mascota);
 
         getRetrofit();
 
@@ -101,6 +108,22 @@ public class PosAdopcion extends AppCompatActivity {
                 Intent intent = new Intent(PosAdopcion.this, RegistrarPost.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        profilePet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PosAdopcion.this, PetProfile.class);
+                startActivity(intent);
+            }
+        });
+
+        profileUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PosAdopcion.this, UserProfile.class);
+                startActivity(intent);
             }
         });
 

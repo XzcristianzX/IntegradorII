@@ -24,7 +24,7 @@ public class Home extends AppCompatActivity {
     private LinearLayout publicacionesAdopcion;
     private LinearLayout consejosCuidados;
     private LinearLayout carnetVacunas;
-    private LinearLayout ubicaMascota;
+//    private LinearLayout ubicaMascota;
     private ImageView backArrow, profileUser, profilePet;
     String userName, id, name;
 
@@ -37,7 +37,7 @@ public class Home extends AppCompatActivity {
         publicacionesAdopcion = findViewById(R.id.publicaciones_adopcion);
         consejosCuidados = findViewById(R.id.consejos_cuidados);
         carnetVacunas = findViewById(R.id.carnet_vacunas);
-        ubicaMascota = findViewById(R.id.ubica_mascota);
+        //ubicaMascota = findViewById(R.id.ubica_mascota);
         backArrow = findViewById(R.id.back_toolbar);
         profilePet = findViewById(R.id.profile_mascota);
         profileUser = findViewById(R.id.profile_user);
@@ -94,14 +94,14 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        ubicaMascota.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Home.this, Ubicacion.class);
-                startActivity(intent);
-
-            }
-        });
+//        ubicaMascota.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Home.this, Ubicacion.class);
+//                startActivity(intent);
+//
+//            }
+//        });
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override

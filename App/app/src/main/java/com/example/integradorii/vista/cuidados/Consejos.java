@@ -39,9 +39,9 @@ public class Consejos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.consejos);
-        backArrow = findViewById(R.id.back_arrow_consejos);
-        profileUser = findViewById(R.id.user_profile_consejos);
-        profilePet = findViewById(R.id.pet_profile_consejos);
+        backArrow = findViewById(R.id.back_toolbar);
+        profilePet = findViewById(R.id.profile_mascota);
+        profileUser = findViewById(R.id.profile_user);
         btconsulta = findViewById(R.id.btn_consulta);
         spinnerAnimalType = findViewById(R.id.spinner_animal_type);
         spinnerAnimalBreed = findViewById(R.id.spinner_animal_breed);
