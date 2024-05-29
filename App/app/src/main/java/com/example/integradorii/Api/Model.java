@@ -20,7 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Model {
-    private static final String BASE_URL = "http://192.168.0.100:3000";
+    private static final String BASE_URL = "http://192.168.1.5:3000";
 
     private ApiService apiService;
 
@@ -183,6 +183,25 @@ public class Model {
             }
         });
     }
+    public void getAnimalsByUserId(int userId, final AnimalsCallback callback) {
+        Call<List<Animal>> call = apiService.getAnimals(userId);
+        call.enqueue(new Callback<List<Animal>>() {
+            @Override
+            public void onResponse(Call<List<Animal>> call, Response<List<Animal>> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Animal>> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
 
     public void createPost(Post post, final PostCallback callback) {
         Call<Post> call = apiService.createPost(post);
@@ -240,6 +259,30 @@ public class Model {
             }
         });
     }
+    public void getPosts(final PostsCallback callback) {
+        Call<List<Post>> call = apiService.getPosts();
+        call.enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                callback.onFailure();
+            }
+        });
+    }
+
+    public interface PostsCallback {
+        void onSuccess(List<Post> posts);
+        void onFailure();
+    }
+
 
 
 
@@ -247,7 +290,10 @@ public class Model {
         void onSuccess(User user);
         void onFailure();
     }
-
+    public interface AnimalsCallback {
+        void onSuccess(List<Animal> animals);
+        void onFailure();
+    }
     public interface AnimalCallback {
         void onSuccess(Animal animal);
         void onFailure();

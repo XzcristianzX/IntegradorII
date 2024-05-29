@@ -1,4 +1,4 @@
-package com.example.integradorii.Adaptadores;
+package com.example.integradorii.adaptadores;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
