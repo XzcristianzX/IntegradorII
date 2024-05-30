@@ -3,6 +3,7 @@ package com.example.integradorii.vista.mascota;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -78,8 +79,27 @@ public class PetProfile extends AppCompatActivity {
         obtenerMascotasDelUsuario();
     }
 
+
+    private int obtenerIdUsuario() {
+        String userIdStr = Model.getShared(this, "userId");
+        if (userIdStr == null || userIdStr.isEmpty()) {
+            Log.e("PetProfile", "ID de usuario inválido");
+            return -1; // Valor por defecto
+        }
+        try {
+            return Integer.parseInt(userIdStr);
+        } catch (NumberFormatException e) {
+            Log.e("PetProfile", "Error al convertir el ID de usuario a número", e);
+            return -1;
+        }
+    }
     private void obtenerMascotasDelUsuario() {
-        int userId = obtenerIdUsuario(); // Método para obtener el ID del usuario actual
+        int userId = obtenerIdUsuario();
+        if (userId == -1) {
+            Toast.makeText(this, "ID de usuario inválido", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         model.getAnimalsByUserId(userId, new Model.AnimalsCallback() {
             @Override
             public void onSuccess(List<Animal> animals) {
@@ -95,9 +115,5 @@ public class PetProfile extends AppCompatActivity {
         });
     }
 
-    private int obtenerIdUsuario() {
-        // Aquí debes implementar cómo obtener el ID del usuario actual desde SharedPreferences
-        String userIdStr = Model.getShared(this, "userId");
-        return Integer.parseInt(userIdStr); // Ejemplo, asegúrate de manejar posibles errores
-    }
+
 }

@@ -199,6 +199,7 @@ public class Model {
             @Override
             public void onFailure(Call<List<Animal>> call, Throwable t) {
                 callback.onFailure();
+                Log.e("ola", t.toString());
             }
         });
     }

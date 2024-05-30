@@ -31,7 +31,7 @@ public class Register extends AppCompatActivity {
     ImageButton back;
     Button btnRegister;
     TextView backLogin;
-    TextInputEditText namein, userin, emailin, passin, phonein, datein, genderin;
+    TextInputEditText namein, userin, emailin, passin, phonein, datein;
     Spinner spinnerGender;
     Model model = new Model();
     String selectedItem;
@@ -50,7 +50,13 @@ public class Register extends AppCompatActivity {
         phonein = findViewById(R.id.phonein);
         datein = findViewById(R.id.datein);
         btnRegister = findViewById(R.id.btn_register);
-        genderin = findViewById(R.id.gender);
+        spinnerGender = findViewById(R.id.spinner_gender);
+
+        String[] genderOptions = {"Masculino", "Femenino", "Indefinido"};
+        ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genderOptions);
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGender.setAdapter(genderAdapter);
+
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
@@ -80,7 +86,7 @@ public class Register extends AppCompatActivity {
             String pin = passin.getText().toString();
             String pin2 = passin.getText().toString();
             String tel = phonein.getText().toString();
-            String genero = genderin.getText().toString();
+            String genero = spinnerGender.getSelectedItem().toString();
 
             if (genero.isEmpty() && tel.isEmpty() && correo.isEmpty() && nombre.isEmpty() && pin.isEmpty() && pin2.isEmpty() && pin.equals(pin2)) {
                 Toast.makeText(this, "ingrese todos los datos", Toast.LENGTH_SHORT).show();
