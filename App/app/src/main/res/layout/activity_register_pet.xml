@@ -81,14 +81,14 @@
             android:layout_marginTop="10dp"
             android:text="Llene los campos por favor"
             android:textColor="@color/titleColorText"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical">
-
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/AppTheme.TextInputLayout"
                 android:layout_width="match_parent"
@@ -98,42 +98,7 @@
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etType"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Tipo"
-                    android:textColor="@color/hintColor"
-                    android:textCursorDrawable="@color/hintColor" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/AppTheme.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etRace"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Raza"
-                    android:textColor="@color/hintColor"
-                    android:textCursorDrawable="@color/hintColor" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/AppTheme.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etName"
+                    android:id="@+id/etName1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nombre"
@@ -168,7 +133,7 @@
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etSize"
+                    android:id="@+id/etSize1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Tamaño"
@@ -185,10 +150,45 @@
                 android:layout_marginRight="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etGender"
+                    android:id="@+id/datein"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Género"
+                    android:hint="Fecha de nacimiento"
+                    android:textColor="@color/hintColor"
+                    android:textCursorDrawable="@color/hintColor"
+                    android:focusable="false"
+                    android:clickable="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTheme.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp">
+
+                <Spinner
+                    android:id="@+id/spinnerType1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="tipo"
+                    android:textColor="@color/hintColor"
+                    android:textCursorDrawable="@color/hintColor" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTheme.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp">
+
+                <Spinner
+                    android:id="@+id/spinnerRace1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="raza"
                     android:textColor="@color/hintColor"
                     android:textCursorDrawable="@color/hintColor" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -201,14 +201,26 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etBirthdate"
+                <Spinner
+                    android:id="@+id/spinnerGender1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Fecha de Nacimiento"
+                    android:layout_height="50dp"
+                    android:hint="raza"
                     android:textColor="@color/hintColor"
                     android:textCursorDrawable="@color/hintColor" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTheme.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spinnerGender1">
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -225,7 +237,8 @@
                     android:backgroundTint="@color/buttonColor"
                     android:text="Registrar mascota"
                     android:textColor="@color/white"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    tools:ignore="TextSizeCheck" />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

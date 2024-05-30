@@ -175,14 +175,13 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/gender"
+                <Spinner
+                    android:id="@+id/spinner_gender"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Genero"
+                    android:layout_height="50dp"
+                    android:hint="Género"
                     android:textColor="@color/hintColor"
-                    android:textCursorDrawable="@color/hintColor"
-                    android:inputType="textPassword"/>
+                    android:textCursorDrawable="@color/hintColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -198,7 +197,7 @@
                     android:id="@+id/passin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Contraseña de 4 digitos segura"
+                    android:hint="Contraseña"
                     android:textColor="@color/hintColor"
                     android:textCursorDrawable="@color/hintColor"
                     android:inputType="textPassword" />

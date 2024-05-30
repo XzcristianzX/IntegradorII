@@ -27,4 +27,118 @@
         <item>Jornada vacunación</item>
         <item>Jornada estelizacación</item>
     </string-array>
+
+    <string-array name="dog_races">
+        <item>Labrador Retriever</item>
+        <item>Pastor Alemán</item>
+        <item>Golden Retriever</item>
+        <item>Bulldog Francés</item>
+        <item>Beagle</item>
+        <item>Poodle</item>
+        <item>Rottweiler</item>
+        <item>Dachshund</item>
+        <item>Husky Siberiano</item>
+        <item>Boxer</item>
+        <item>Chihuahua</item>
+        <item>Pug</item>
+        <item>Cocker Spaniel</item>
+        <item>Schnauzer</item>
+        <item>Border Collie</item>
+        <item>Criollo (Mestizo)</item>
+    </string-array>
+
+    <string-array name="cat_races">
+        <item>Persa</item>
+        <item>Siamés</item>
+        <item>Maine Coon</item>
+        <item>Ragdoll</item>
+        <item>Sphynx</item>
+        <item>Bengalí</item>
+        <item>British Shorthair</item>
+        <item>Scottish Fold</item>
+        <item>Siberiano</item>
+        <item>Birmano</item>
+        <item>Abisinio</item>
+        <item>Chartreux</item>
+        <item>Exotic Shorthair</item>
+        <item>Oriental</item>
+        <item>American Shorthair</item>
+        <item>Criollo (Mestizo)</item>
+    </string-array>
+
+    <string-array name="rabbit_races">
+        <item>Holland Lop</item>
+        <item>Netherland Dwarf</item>
+        <item>Lionhead</item>
+        <item>Mini Rex</item>
+        <item>Flemish Giant</item>
+        <item>English Angora</item>
+        <item>American Fuzzy Lop</item>
+        <item>Mini Lop</item>
+        <item>Harlequin</item>
+        <item>Jersey Wooly</item>
+        <item>Havana</item>
+        <item>Rex</item>
+        <item>Polish</item>
+        <item>Californian</item>
+        <item>Dutch</item>
+        <item>Criollo (Mestizo)</item>
+    </string-array>
+
+    <string-array name="hamster_races">
+        <item>Sirio (Dorados)</item>
+        <item>Roborovski</item>
+        <item>Ruso</item>
+        <item>Campbell</item>
+        <item>Chino</item>
+        <item>Winter White</item>
+        <item>Panda</item>
+        <item>Albino</item>
+        <item>Polaco</item>
+        <item>Angora</item>
+        <item>Robusto</item>
+        <item>Enano</item>
+        <item>Satinado</item>
+        <item>Teddybear</item>
+        <item>Atigrado</item>
+        <item>Criollo (Mestizo)</item>
+    </string-array>
+
+    <string-array name="bird_races">
+        <item>Canario</item>
+        <item>Periquito</item>
+        <item>Agapornis</item>
+        <item>Jilguero</item>
+        <item>Diamante Mandarín</item>
+        <item>Cacatúa</item>
+        <item>Loro Amazónico</item>
+        <item>Ninfa (Cockatiel)</item>
+        <item>Papagayo</item>
+        <item>Guacamayo</item>
+        <item>Pinzón</item>
+        <item>Cardelina</item>
+        <item>Diamante de Gould</item>
+        <item>Pardillo</item>
+        <item>Carolina</item>
+        <item>Criollo (Mestizo)</item>
+    </string-array>
+
+    <string-array name="fish_races">
+        <item>Goldfish</item>
+        <item>Betta</item>
+        <item>Guppy</item>
+        <item>Tetra Neón</item>
+        <item>Cíclido</item>
+        <item>Molly</item>
+        <item>Platy</item>
+        <item>Gourami</item>
+        <item>Oscar</item>
+        <item>Plecostomus</item>
+        <item>Pez Ángel</item>
+        <item>Pez Payaso</item>
+        <item>Killifish</item>
+        <item>Pez Gato</item>
+        <item>Barbo Tigre</item>
+        <item>Criollo (Mestizo)</item>
+    </string-array>
 </resources>

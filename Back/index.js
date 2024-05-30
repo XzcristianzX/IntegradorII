@@ -183,12 +183,12 @@ app.get('/user', async (req, res) => {
 
 //REGISTRO DE USUARIOS
 app.post('/user', async (req, res) => {
-    const { username, name, birthdate, email, password, img_profile, phone, gender, active } = req.body;
-    console.log (username)
+    const { user_name, name, birthdate, mail, password, imgProfile, phone, gender, active } = req.body;
+    console.log (user_name)
     try {
         const { rows } = await pool.query(
             'INSERT INTO "user" (user_name, name, birthdate, mail, password, img_profile, phone, gender, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
-            [username, name, birthdate, email, password, img_profile, phone, gender, active]
+            [user_name, name, birthdate, mail, password, imgProfile, phone, gender, active]
         );
         const newUser = rows[0];
         io.emit('newUser', newUser); // Emitir un evento a todos los clientes conectados sobre el nuevo usuario

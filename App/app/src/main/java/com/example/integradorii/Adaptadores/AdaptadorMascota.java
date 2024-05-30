@@ -86,9 +86,9 @@ public class AdaptadorMascota extends RecyclerView.Adapter<AdaptadorMascota.View
             tipo = itemView.findViewById(R.id.tipoAnimal);
             nombre = itemView.findViewById(R.id.nombreMascota);
             peso = itemView.findViewById(R.id.pesoMascota);
-            genero = itemView.findViewById(R.id.tamañoMascota);
-            edad = itemView.findViewById(R.id.gender);
-            estado = itemView.findViewById(R.id.edadMascota);
+            genero = itemView.findViewById(R.id.generoMascota);
+            edad = itemView.findViewById(R.id.edadMascota);
+            estado = itemView.findViewById(R.id.tv_status);
             imagen = itemView.findViewById(R.id.imageAnimal);
         }
     }
