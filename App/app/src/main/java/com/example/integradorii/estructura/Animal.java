@@ -24,7 +24,7 @@ public class Animal {
     private String owner;
 
     @SerializedName("weight")
-    private double weight;
+    private String weight;
 
     @SerializedName("size")
     private String size;
@@ -41,7 +41,7 @@ public class Animal {
     @SerializedName("active")
     private boolean active;
 
-    public Animal(int idAnimal, String name, String type, String race, String location, String owner, double weight, String size, String gender, String img, Date birthdate, boolean active) {
+    public Animal(int idAnimal, String name, String type, String race, String location, String owner, String weight, String size, String gender, String img, Date birthdate, boolean active) {
         this.idAnimal = idAnimal;
         this.name = name;
         this.type = type;
@@ -104,11 +104,11 @@ public class Animal {
         this.owner = owner;
     }
 
-    public double getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 

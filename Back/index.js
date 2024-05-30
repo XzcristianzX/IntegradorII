@@ -9,7 +9,7 @@ const http = require('http');
 const socketIo = require('socket.io');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Crear el servidor HTTP con Express
 const server = http.createServer(app);
@@ -284,6 +284,24 @@ app.get('/animal', async (req, res) => {
     }
 });
 
+// OBTEJNER ANIMALES POR ID
+app.put('/animalid/:id', async (req, res) => {
+    const userId = req.params.id;
+
+    console.error(userId);
+    try {
+        const { rows } = await pool.query('SELECT * FROM "animal" WHERE id_owner = $1', [userId]);
+        if (rows.length > 0) {
+            res.json(rows);
+        } else {
+            res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+    } catch (error) {
+        console.error('Error al obtener el usuario:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
 //REGISTRAR MASCOTA
 app.post('/animal', upload.single('img'), async (req, res) => {
     const { type, race, location, owner, name, weight, size, gender, birthdate,img } = req.body;
@@ -539,12 +557,13 @@ app.get('/cuidados', async (req, res) => {
     }
 });
 
+//AGREGAR VACUNAS
 app.post('/vaccines', async (req, res) => {
-    const { name, description } = req.body;
+    const { name, description, next_vaccine, status, created_at, id_pet} = req.body;
     try {
         const result = await pool.query(
-            'INSERT INTO vaccine (name, description) VALUES ($1, $2) RETURNING *',
-            [name, description]
+            'INSERT INTO vaccine (name, description, next_vaccine, status, created_at, id_pet) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+            [name, description, next_vaccine, status, created_at, id_pet]
         );
         res.status(201).json(result.rows[0]);
     } catch (error) {
@@ -565,14 +584,15 @@ app.get('/vaccines', async (req, res) => {
 });
 
 // READ - Obtener una vacuna por ID
-app.get('/vaccines/:id', async (req, res) => {
+app.get('/vacunaid/:id', async (req, res) => {
     const { id } = req.params;
+    console.error(id);
     try {
-        const result = await pool.query('SELECT * FROM vaccine WHERE id_vaccine = $1', [id]);
+        const result = await pool.query('SELECT * FROM vaccine WHERE id_pet = $1', [id]);
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Vacuna no encontrada' });
         }
-        res.status(200).json(result.rows[0]);
+        res.status(200).json(result.rows);
     } catch (error) {
         console.error('Error al obtener la vacuna:', error);
         res.status(500).json({ error: 'Error interno del servidor' });

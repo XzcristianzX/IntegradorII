@@ -10,6 +10,7 @@ import com.example.integradorii.estructura.Animal;
 import com.example.integradorii.estructura.Careful;
 import com.example.integradorii.estructura.Post;
 import com.example.integradorii.estructura.User;
+import com.example.integradorii.estructura.Vacuna;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Model {
-    private static final String BASE_URL = "http://192.168.1.5:3000";
+    private static final String BASE_URL = "http://192.168.0.100:3001";
 
     private ApiService apiService;
 
@@ -278,6 +279,67 @@ public class Model {
         });
     }
 
+    public void registerVaccine(Vacuna vacuna, final vaccineCallback vaccineCallback) {
+        Call<Vacuna> call = apiService.registrarVacuna(vacuna);
+        call.enqueue(new Callback<Vacuna>() {
+            @Override
+            public void onResponse(Call<Vacuna> call, Response<Vacuna> response) {
+                if (response.isSuccessful()) {
+                    vaccineCallback.onSuccess(response.body());
+                } else {
+                    vaccineCallback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Vacuna> call, Throwable t) {
+                vaccineCallback.onFailure();
+                Log.e("olaa", t.toString());
+            }
+        });
+    }
+
+    public void getPetsToChoose(int id_user, final getMyAnimals getMyAnimalsCallback) {
+        Call<List<Animal>> call = apiService.getMyAnimals(id_user);
+        call.enqueue(new Callback<List<Animal>>() {
+            @Override
+            public void onResponse(Call<List<Animal>> call, Response<List<Animal>> response) {
+                if (response.isSuccessful()) {
+                    getMyAnimalsCallback.onSuccess(response.body());
+                } else {
+                    getMyAnimalsCallback.onFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Animal>> call, Throwable t) {
+                getMyAnimalsCallback.onFailure();
+                Log.e("ola", t.toString());
+            }
+        });
+    }
+
+    public void getvacunasByPet(int id_pet, final vaccinegetCallback vaccinegetCallback) {
+        Call<List<Vacuna>> call = apiService.getMyvacunas(id_pet);
+        call.enqueue(new Callback<List<Vacuna>>() {
+            @Override
+            public void onResponse(Call<List<Vacuna>> call, Response<List<Vacuna>> response) {
+                if (response.isSuccessful()) {
+                    vaccinegetCallback.onSuccess(response.body());
+                } else {
+                    vaccinegetCallback.onFailure();
+                    Log.e("ola88", "paso por aca ww");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Vacuna>> call, Throwable t) {
+                vaccinegetCallback.onFailure();
+                Log.e("ola88", "paso por aca" + t.toString());
+            }
+        });
+    }
+
     public interface PostsCallback {
         void onSuccess(List<Post> posts);
         void onFailure();
@@ -306,6 +368,21 @@ public class Model {
 
     public interface CarefulCallback {
         void onSuccess(List<Careful> carefulList);
+        void onFailure();
+    }
+
+    public interface vaccineCallback {
+        void onSuccess(Vacuna vacuna);
+        void onFailure();
+    }
+
+    public interface vaccinegetCallback {
+        void onSuccess(List<Vacuna> vacunasList);
+        void onFailure();
+    }
+
+    public interface getMyAnimals {
+        void onSuccess( List<Animal> myAnimals);
         void onFailure();
     }
 

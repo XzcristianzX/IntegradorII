@@ -17,6 +17,7 @@ import com.example.integradorii.vista.cuidados.Consejos;
 import com.example.integradorii.vista.mascota.PetProfile;
 import com.example.integradorii.vista.post.PosAdopcion;
 import com.example.integradorii.vista.usuario.Usuario;
+import com.example.integradorii.vista.vacunas.SelectAnimalForVaccine;
 import com.example.integradorii.vista.vacunas.Vacunas;
 
 public class Home extends AppCompatActivity {
@@ -89,7 +90,7 @@ public class Home extends AppCompatActivity {
         carnetVacunas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Home.this, Vacunas.class);
+                Intent intent = new Intent(Home.this, SelectAnimalForVaccine.class);
                 startActivity(intent);
             }
         });

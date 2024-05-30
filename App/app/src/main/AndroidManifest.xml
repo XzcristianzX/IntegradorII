@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +19,9 @@
         android:theme="@style/Theme.IntegradorII"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".vista.vacunas.SelectAnimalForVaccine"
+            android:exported="false" />
         <activity
             android:name=".vista.mascota.RegisterPet"
             android:exported="false" />
@@ -81,13 +84,14 @@
         <activity
             android:name=".vista.post.RegistrarPost"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".vista.vacunas.ActuactualizarVacuna"
             android:exported="true" />
         <activity
             android:name=".vista.vacunas.RegistroVacuna"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".vista.cuidados.Consejos"
             android:exported="true"

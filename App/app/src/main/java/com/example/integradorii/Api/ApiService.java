@@ -4,13 +4,12 @@ import com.example.integradorii.estructura.Animal;
 import com.example.integradorii.estructura.Careful;
 import com.example.integradorii.estructura.Post;
 import com.example.integradorii.estructura.User;
+import com.example.integradorii.estructura.Vacuna;
 
 import java.util.List;
 
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -61,7 +60,17 @@ public interface ApiService {
 
     @PUT("/post/{id}")
     Call<Post> updatePost(@Path("id") int postId, @Body Post post);
+
     @GET("cuidados")
     Call<List<Careful>> getCuidados(@Query("id_race") int idRace);
+
+    @POST("vaccines")
+    Call<Vacuna> registrarVacuna(@Body Vacuna vacuna);
+
+    @PUT("/animalid/{id}")
+    Call<List<Animal>> getMyAnimals(@Path("id") int id_user);
+
+    @GET("/vacunaid/{id}")
+    Call<List<Vacuna>> getMyvacunas(@Path("id") int id_pet);
 }
 

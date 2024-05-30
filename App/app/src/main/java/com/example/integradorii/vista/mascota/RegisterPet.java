@@ -60,7 +60,7 @@ public class RegisterPet extends AppCompatActivity {
         String race = etRace.getText().toString();
         String location = etLocation.getText().toString();
         String owner = getOwnerId(); // Método para obtener el ID del dueño actual
-        double weight = Double.parseDouble(etWeight.getText().toString());
+        String weight = etWeight.getText().toString();
         String size = etSize.getText().toString();
         String gender = etGender.getText().toString();
         Date birthdate = getDateFromString(etBirthdate.getText().toString());
