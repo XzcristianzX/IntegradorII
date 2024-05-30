@@ -1,6 +1,7 @@
 package com.example.integradorii.vista.mascota;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -17,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.estructura.Animal;
+import com.example.integradorii.vista.Home;
+import com.example.integradorii.vista.UserProfile;
 
 import java.util.Calendar;
 
@@ -26,6 +30,7 @@ public class RegisterPet extends AppCompatActivity {
     private Spinner spinnerType, spinnerRace, spinnerGender;
     private Button btnRegisterPet;
     private Model model;
+    private ImageView backArrow, profilePet, profileUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +47,12 @@ public class RegisterPet extends AppCompatActivity {
         spinnerType = findViewById(R.id.spinnerType1);
         spinnerRace = findViewById(R.id.spinnerRace1);
         spinnerGender = findViewById(R.id.spinnerGender1);
+        backArrow = findViewById(R.id.back_toolbar);
+        profilePet = findViewById(R.id.profile_mascota);
+        profileUser = findViewById(R.id.profile_user);
 
         // Lista de opciones de género
-        String[] genderOptions = {"Masculino", "Femenino", "Indefinido"};
+        String[] genderOptions = {"Macho", "Hembra", "No sabe"};
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genderOptions);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGender.setAdapter(genderAdapter);
@@ -75,13 +83,8 @@ public class RegisterPet extends AppCompatActivity {
         spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // Obtener el tipo de animal seleccionado
                 String selectedType = parent.getItemAtPosition(position).toString();
-
-                // Obtener la lista de razas según el tipo de animal seleccionado
                 String[] raceOptions = getRaceOptions(selectedType);
-
-                // Crear un ArrayAdapter para las opciones de raza
                 ArrayAdapter<String> raceAdapter = new ArrayAdapter<>(RegisterPet.this, android.R.layout.simple_spinner_item, raceOptions);
                 raceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerRace.setAdapter(raceAdapter);
@@ -89,7 +92,21 @@ public class RegisterPet extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // No se necesita implementar nada aquí
+            }
+        });
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        profileUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterPet.this, UserProfile.class);
+                startActivity(intent);
             }
         });
     }
@@ -99,6 +116,10 @@ public class RegisterPet extends AppCompatActivity {
         String type = spinnerType.getSelectedItem().toString();
         String race = spinnerRace.getSelectedItem().toString();
         String gender = spinnerGender.getSelectedItem().toString();
+        int tipo;
+        if (type.equals("Perro")){
+            type ="1";
+        }
 
         // Obtener los valores de los EditText
         String name = etName.getText().toString();
@@ -109,7 +130,7 @@ public class RegisterPet extends AppCompatActivity {
         String birthdate = etBirthdate.getText().toString(); // Cambiar esto según la implementación de la fecha
 
         // Crear un objeto Animal con los datos ingresados
-        Animal animal = new Animal(0, name, type, race, "", owner, weight, size, gender, null, null, true);
+        Animal animal = new Animal(name, "1", "1", "1", owner, weight, size, gender, null, birthdate, true);
 
         // Llamar al método de registro en el modelo
         model.registerAnimal(animal, new Model.AnimalCallback() {

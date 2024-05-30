@@ -304,27 +304,23 @@ app.put('/animalid/:id', async (req, res) => {
 
 //REGISTRAR MASCOTA
 app.post('/animal', upload.single('img'), async (req, res) => {
-    const { type, race, location, owner, name, weight, size, gender, birthdate,img } = req.body;
+    const { type, race, location, owner, name, weight, size, gender, birthdate, status } = req.body;
     try {
         // Verificar si se proporcionó una imagen
-        const filename = req.file ? req.file.filename : null;
-        const img = filename ? `http://localhost:3000/images/${filename}` : null;
+        // const filename = req.file ? req.file.filename : null;
+        // const img = filename ? `http://localhost:3000/images/${filename}` : null;
 
         // Construir la consulta de inserción dinámicamente
-        let body = 'INSERT INTO "animal" (id_type, id_race, id_location, id_vaccine, id_owner, name, weight, size, gender, birthdate,status';
-        let values = [type, race, location, owner, name, weight, size, gender, birthdate];
-
-        // Agregar la columna de imagen si se proporcionó
-        if (img) {
-            body += ', img';
-            values.push(img);
-        }
-
-        // Finalizar la consulta y agregar los valores dinámicos
-        body += ') VALUES (' + values.map((_, index) => '$' + (index + 1)).join(', ') + ') RETURNING *';
+        const query = `
+            INSERT INTO "animal" 
+            (id_type, id_race, id_location, id_owner, name, weight, size, gender, birthdate, status)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+            RETURNING *
+        `;
+        const values = [type, race, location, owner, name, weight, size, gender, birthdate, status];
 
         // Ejecutar la consulta con los valores dinámicos
-        const { rows } = await pool.body(body, values);
+        const { rows } = await pool.query(query, values);
 
         // Responder con los datos del nuevo animal registrado
         const newAnimal = rows[0];
@@ -335,6 +331,7 @@ app.post('/animal', upload.single('img'), async (req, res) => {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
+
 
 
 //ACTUALIZAR INFOTMACIÓN DE MASCOTA

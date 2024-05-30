@@ -17,23 +17,25 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.integradorii.Adaptadores.AdaptadorElegirMascota;
 import com.example.integradorii.Api.Model;
 import com.example.integradorii.R;
 import com.example.integradorii.Adaptadores.AdaptadorMascota;
 import com.example.integradorii.estructura.Animal;
+import com.example.integradorii.vista.UserProfile;
 import com.example.integradorii.vista.usuario.Usuario;
+import com.example.integradorii.vista.vacunas.RegistroVacuna;
+import com.example.integradorii.vista.vacunas.SelectAnimalForVaccine;
+import com.example.integradorii.vista.vacunas.Vacunas;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PetProfile extends AppCompatActivity {
-
-    private ImageView backArrow, profileUser;
-    private ImageButton btnCrearMascotas;
-    private RecyclerView recyclerMascota;
-    private AdaptadorMascota adaptadorMascota;
-    private List<Animal> listaMascotas;
-    private Model model;
+    private List<Animal> myAnimalsList;
+    private AdaptadorElegirMascota adaptadorElegirMascota;
+    private RecyclerView recyclerView;
+    private ImageButton profile_user_own, back_toolbar_own, addPet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,74 +48,54 @@ public class PetProfile extends AppCompatActivity {
             return insets;
         });
 
-        model = new Model();
+        recyclerView = findViewById(R.id.reciclerPets);
+        profile_user_own = findViewById(R.id.profile_user_own);
+        back_toolbar_own = findViewById(R.id.back_toolbar_own);
+        addPet = findViewById(R.id.addPet);
+        Model model = new Model();
 
-        profileUser = findViewById(R.id.profile_user_own);
-        backArrow = findViewById(R.id.back_toolbar_own);
-        btnCrearMascotas = findViewById(R.id.addPet);
-        recyclerMascota = findViewById(R.id.reciclerPets);
-
-        listaMascotas = new ArrayList<>();
-        adaptadorMascota = new AdaptadorMascota(listaMascotas, position -> {
-            // Manejar clics en los ítems si es necesario
-        });
-
-        recyclerMascota.setLayoutManager(new LinearLayoutManager(this));
-        recyclerMascota.setAdapter(adaptadorMascota);
-
-        btnCrearMascotas.setOnClickListener(v -> {
-            Intent intent = new Intent(PetProfile.this, RegisterPet.class);
-            finish();
-            startActivity(intent);
-        });
-
-        profileUser.setOnClickListener(view -> {
-            Intent intent = new Intent(PetProfile.this, Usuario.class);
-            finish();
-            startActivity(intent);
-        });
-
-        backArrow.setOnClickListener(view -> finish());
-
-        // Obtener mascotas del usuario
-        obtenerMascotasDelUsuario();
-    }
-
-
-    private int obtenerIdUsuario() {
-        String userIdStr = Model.getShared(this, "userId");
-        if (userIdStr == null || userIdStr.isEmpty()) {
-            Log.e("PetProfile", "ID de usuario inválido");
-            return -1; // Valor por defecto
-        }
-        try {
-            return Integer.parseInt(userIdStr);
-        } catch (NumberFormatException e) {
-            Log.e("PetProfile", "Error al convertir el ID de usuario a número", e);
-            return -1;
-        }
-    }
-    private void obtenerMascotasDelUsuario() {
-        int userId = obtenerIdUsuario();
-        if (userId == -1) {
-            Toast.makeText(this, "ID de usuario inválido", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        model.getAnimalsByUserId(userId, new Model.AnimalsCallback() {
+        int iduser = Integer.parseInt(Model.getShared(getApplicationContext(), "userId"));
+        model.getPetsToChoose(iduser, new Model.getMyAnimals() {
             @Override
-            public void onSuccess(List<Animal> animals) {
-                listaMascotas.clear();
-                listaMascotas.addAll(animals);
-                adaptadorMascota.notifyDataSetChanged();
+            public void onSuccess(List<Animal> myAnimals) {
+
+                myAnimalsList = new ArrayList<>();
+                myAnimalsList.addAll(myAnimals);
+                adaptadorElegirMascota = new AdaptadorElegirMascota(myAnimalsList, position -> {
+//                Intent intent = new Intent(SelectAnimalForVaccine.this, Vacunas.class);
+//                intent.putExtra("idPet", position);
+//                startActivity(intent);
+                });
+                recyclerView.setAdapter(adaptadorElegirMascota);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
             }
 
             @Override
             public void onFailure() {
-                Toast.makeText(PetProfile.this, "Error al cargar los animales", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error de servidor", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        back_toolbar_own.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        profile_user_own.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), UserProfile.class));
+            }
+        });
+
+        addPet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RegisterPet.class));
             }
         });
     }
-
-
 }
+

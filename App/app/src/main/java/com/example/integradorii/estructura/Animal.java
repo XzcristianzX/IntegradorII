@@ -36,12 +36,12 @@ public class Animal {
     private String img;
 
     @SerializedName("birthdate")
-    private Date birthdate;
+        private String birthdate;
 
     @SerializedName("active")
     private boolean active;
 
-    public Animal(int idAnimal, String name, String type, String race, String location, String owner, String weight, String size, String gender, String img, Date birthdate, boolean active) {
+    public Animal( String name, String type, String race, String location, String owner, String weight, String size, String gender, String img, String birthdate, boolean active) {
         this.idAnimal = idAnimal;
         this.name = name;
         this.type = type;
@@ -136,11 +136,11 @@ public class Animal {
         this.img = img;
     }
 
-    public Date getBirthdate() {
+            public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 

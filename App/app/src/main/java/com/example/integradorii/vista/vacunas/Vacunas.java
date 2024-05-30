@@ -96,7 +96,6 @@ public class Vacunas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), RegistroVacuna.class));
-                finish();
             }
         });
         backArrow.setOnClickListener(new View.OnClickListener() {
